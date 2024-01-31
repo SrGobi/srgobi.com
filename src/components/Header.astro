@@ -50,38 +50,40 @@ const navItems = [
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
+    const sections = document.querySelectorAll("section")
+    const navItems = document.querySelectorAll("header nav a")
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("link-active");
+              item.classList.add("text-blue-500")
             } else {
-              item.classList.remove("link-active");
+              item.classList.remove("text-blue-500")
             }
-          });
+          })
         }
-      });
-    };
+      })
+    }
 
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
-    });
+    })
 
     sections.forEach((section) => {
-      observer.observe(section);
-    });
+      observer.observe(section)
+    })
 
     // Cleanup function
-    window.onunload = () => {
-      observer.disconnect();
-    };
-  });
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect()
+      }
+    }
+  })
 </script>
 
 <style>
