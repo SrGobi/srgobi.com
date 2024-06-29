@@ -35,7 +35,7 @@ const navItems = [
 	<nav
 		class={`
       w-3/5 h-full
-      border-2 border-gray-500 rounded-full md:px-6 px-3
+      border-2 border-zinc-500 rounded-full md:px-6 px-3
       flex flex-wrap flex-row items-center justify-center
       bg-neutral-200/70 dark:bg-black/50 backdrop-blur-2xl
     `}
@@ -50,13 +50,13 @@ const navItems = [
 	</nav>
 </header>
 
-<div class="md:invisible visible fixed bottom-0 left-0 z-50 w-full h-16 border-t border-gray-500 bg-neutral-200/70 dark:bg-black/50 backdrop-blur-2xl">
+<div class="md:invisible visible fixed bottom-0 left-0 z-50 w-full h-16 border-t border-zinc-500 bg-neutral-200/70 dark:bg-black/50 backdrop-blur-2xl">
 	<div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
 		{
 			navItems.map((link) => (
-				<button type="button" class="inline-flex flex-col items-center justify-center border-gray-200 border-x hover:bg-white/10 dark:hover:bg-gray-800 group dark:border-gray-600" onclick={link.btnurl}>
+				<button type="button" class="inline-flex flex-col items-center justify-center border-zinc-200 border-x hover:bg-white/10 dark:hover:bg-zinc-800 group dark:border-zinc-600" onclick={link.btnurl}>
 					<div class="group-hover:text-blue-600 dark:group-hover:text-blue-500" set:html={link.svgHtml} />
-					<a class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-label={link.label} href={link.url}>
+					<a class="text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-label={link.label} href={link.url}>
 						{link.title}
 					</a>
 				</button>
