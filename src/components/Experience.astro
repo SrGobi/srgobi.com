@@ -6,31 +6,26 @@ const EXPERIENCIE = [
 	{
 		date: 'Agosto 2021 - Actualmente...',
 		title: 'Fundador y CEO − ESP CUSTOMS LLC',
-		description: 'Desarrollador Full-Stack, diseñador, maquetador y creador de la base de datos de la empresa. Desarrollo de la web y el sistema de eventos para la plataforma de Discord. Gestionando el Discord Bot y el servidor de soporte',
+		description:
+			'Responsable de la creación y desarrollo integral de la plataforma. Diseñé y desarrollé desde cero tanto el servidor como el panel web, implementando una base de datos robusta, integración de APIs internas/externas y un sistema de eventos para la comunicación y componentización del proyecto. Mejoré la eficiencia del sistema, implementé pruebas exhaustivas y una gestión continua, logrando un despliegue eficiente y un soporte eficaz.',
 		link: 'https://espcustoms.xyz',
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.ANGULAR, TAGS.BOOTSTRAP]
 	},
 	{
 		date: 'Enero 2024',
 		title: 'Desarrollador de aplicaciones webs − Kemi Technology',
-		description: 'Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicacione web realizando diversas tareas de forma automática en el servidor de Discord de Kemi. Estos pueden ejecutar funciones simples o complejas, desde moderar chats hasta proporcionar respuestas automáticas a preguntas frecuentes',
+		description: 'Encargado de impulsar la mejora continua y el progreso en la aplicación web. Mi rol ha consistido en componentizar y optimizar cada área existente para garantizar un rendimiento óptimo. Además, he contribuido significativamente agregando funcionalidades clave como la moderación de chats y respuestas automáticas a preguntas frecuentes en el servidor de Discord. Asimismo, realicé mejoras y ajustes en la página web para asegurar una mayor eficiencia y efectividad en el soporte.',
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND]
-	},
-	{
-		date: 'Septiembre 2020 - 2021',
-		title: 'SENIOR SOFTWARE ENGINEER BOTS - Discord Inc',
-		description: 'Creador de SDKs, herramientas y actualizaciones del portal de desarrolladores para utilizar últimas funciones de bot (como comandos de barra diagonal , botones y más ). Colaborar con ingenieros, productos, diseño y otros miembros del equipo sobre el futuro para los bots y desarrolladores en Discord.',
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.DISCORD]
 	}
 ];
 ---
 
 <ol class="relative mt-16">
-  {
-    EXPERIENCIE.map((experiencie) => (
-      <li class="">
-        <ExperienceItem {...experiencie} />
-      </li>
-    ))
-  }
+	{
+		EXPERIENCIE.map((experiencie) => (
+			<li class="">
+				<ExperienceItem {...experiencie} />
+			</li>
+		))
+	}
 </ol>
