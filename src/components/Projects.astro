@@ -4,7 +4,7 @@ import { TAGS } from './TagsIcons.astro';
 
 const PROJECTS = [
 	{
-		title: 'Discord-Bot Peereira7',
+		title: 'App Discord Peereira7',
 		description: 'Desarrollo de aplicacion node para la plataforma de Discord en el Servidor oficial de Heretics Pereira, con +50 comandos procesados y todos los eventos posibles de Discord, gestion de usuarios y mensajes',
 		link: 'https://discord.gg/peereira7',
 		image: '/projects/Servidor_Peereira7.webp',
@@ -25,13 +25,13 @@ const PROJECTS = [
 		PROJECTS.map(({ image, title, description, tags, link }) => (
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
-					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
 						<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
 					</div>
 				</div>
 
 				<div class="w-full md:w-1/2 md:max-w-lg">
-					<h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+					<h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100">{title}</h3>
 					<div class="flex flex-wrap mt-2">
 						<ul class="flex flex-row mb-2 gap-x-2">
 							{tags.map((tag) => (
@@ -44,7 +44,7 @@ const PROJECTS = [
 							))}
 						</ul>
 
-						<div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+						<div class="mt-2 text-zinc-700 dark:text-zinc-400">{description}</div>
 						<footer class="flex gap-x-4 items-end justify-start mt-4">
 							<LinkButton href={link}>
 								<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
