@@ -4,6 +4,18 @@ import { TAGS } from './TagsIcons.astro';
 
 const PROJECTS = [
 	{
+		title: 'AuraFut - Ecommerce',
+		description: [
+			'Desarrollo de una tienda online de productos deportivos estructurada en tres módulos principales. Cada componente ha sido optimizado para ofrecer una experiencia de usuario rápida y eficiente, asegurando un rendimiento óptimo de la plataforma.',
+			'Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.',
+			'Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.',
+			'Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.'
+		],
+		link: 'https://aurafut.com',
+		image: '/projects/aurafut.webp',
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP]
+	},
+	{
 		title: 'App Discord Peereira7',
 		description: 'Desarrollo de aplicacion node para la plataforma de Discord en el Servidor oficial de Heretics Pereira, con +50 comandos procesados y todos los eventos posibles de Discord, gestion de usuarios y mensajes',
 		link: 'https://discord.gg/peereira7',
@@ -44,7 +56,17 @@ const PROJECTS = [
 							))}
 						</ul>
 
-						<div class="mt-2 text-zinc-700 dark:text-zinc-400">{description}</div>
+						<div class="mt-2 text-zinc-700 dark:text-zinc-400">
+							{Array.isArray(description) ? (
+								<ul class="list-disc list-inside">
+									{description.map((point) => (
+										<li>{point}</li>
+									))}
+								</ul>
+							) : (
+								<p>{description}</p>
+							)}
+						</div>
 						<footer class="flex gap-x-4 items-end justify-start mt-4">
 							<LinkButton href={link}>
 								<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
