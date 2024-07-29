@@ -57,10 +57,8 @@ jobs:
       - name: Add Bun to PATH
         if: steps.detect-package-manager.outputs.manager == 'bun'
         run: |
-          echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
-          echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
-      - name: Setup environment variables
-        run: echo "source $GITHUB_ENV" >> $GITHUB_ENV
+          echo 'BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
+          echo 'PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
       - name: Source environment variables
         run: source $GITHUB_ENV
       - name: Setup Pages
