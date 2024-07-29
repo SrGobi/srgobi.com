@@ -6,5 +6,5 @@ import robotsTxt from "astro-robots-txt"
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), robotsTxt()],
-  site: 'https://srgobi.github.io/portfolio.srgobi'
+  site: 'https://srgobi.com'
 })
