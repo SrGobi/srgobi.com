@@ -53,19 +53,19 @@ jobs:
           node-version: "20"
       - name: Install Bun
         if: steps.detect-package-manager.outputs.manager == 'bun'
-        run: curl -fsSL https://bun.sh/install | bash
-      - name: Add Bun to PATH
-        if: steps.detect-package-manager.outputs.manager == 'bun'
         run: |
+          curl -fsSL https://bun.sh/install | bash
           echo 'BUN_INSTALL=$HOME/.bun' >> $GITHUB_ENV
           echo 'PATH=$BUN_INSTALL/bin:$PATH' >> $GITHUB_ENV
-      - name: Source environment variables
+      - name: Debug PATH and Bun installation
         run: |
-          echo "BUN_INSTALL=$HOME/.bun" >> $GITHUB_ENV
-          echo "PATH=$BUN_INSTALL/bin:$PATH" >> $GITHUB_ENV
-          source $GITHUB_ENV
-      - name: Confirm Bun installation
-        run: echo $PATH && bun --version
+          echo "PATH: $PATH"
+          echo "BUN_INSTALL: $BUN_INSTALL"
+          ls -la $HOME/.bun/bin
+          bun --version || echo "Bun not found"
+        env:
+          PATH: ${{ env.PATH }}
+          BUN_INSTALL: ${{ env.BUN_INSTALL }}
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
