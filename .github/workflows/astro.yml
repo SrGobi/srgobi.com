@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "." 
+  BUILD_PATH: "."
 
 jobs:
   build:
@@ -46,20 +46,20 @@ jobs:
           else
             echo "Unable to determine package manager"
             exit 1
-          fi
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
       - name: Install Bun
         if: steps.detect-package-manager.outputs.manager == 'bun'
-        run: |
-          curl -fsSL https://bun.sh/install | bash
+        run: curl -fsSL https://bun.sh/install | bash
       - name: Add Bun to PATH
         if: steps.detect-package-manager.outputs.manager == 'bun'
         run: |
           echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
           echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
+      - name: Setup environment variables
+        run: echo "source $GITHUB_ENV" >> $GITHUB_ENV
       - name: Source environment variables
         run: source $GITHUB_ENV
       - name: Setup Pages
