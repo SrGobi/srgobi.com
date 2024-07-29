@@ -1,7 +1,3 @@
-# Sample workflow for building and deploying an Astro site to GitHub Pages
-#
-# To get started with Astro see: https://docs.astro.build/en/getting-started/
-#
 name: Deploy Astro site to Pages
 
 on:
@@ -38,7 +34,13 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
+          if [ -f "${{ github.workspace }}/bun.lockb" ]; then
+            echo "manager=bun" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=bun" >> $GITHUB_OUTPUT
+            echo "lockfile=bun.lockb" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
@@ -53,13 +55,18 @@ jobs:
           else
             echo "Unable to determine package manager"
             exit 1
-          fi
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
+      - name: Setup Bun
+        if: steps.detect-package-manager.outputs.manager == 'bun'
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          export BUN_INSTALL="$HOME/.bun"
+          export PATH="$BUN_INSTALL/bin:$PATH"
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
