@@ -57,10 +57,15 @@ jobs:
       - name: Add Bun to PATH
         if: steps.detect-package-manager.outputs.manager == 'bun'
         run: |
-          echo 'BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
-          echo 'PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
+          echo 'BUN_INSTALL=$HOME/.bun' >> $GITHUB_ENV
+          echo 'PATH=$BUN_INSTALL/bin:$PATH' >> $GITHUB_ENV
       - name: Source environment variables
-        run: source $GITHUB_ENV
+        run: |
+          echo "BUN_INSTALL=$HOME/.bun" >> $GITHUB_ENV
+          echo "PATH=$BUN_INSTALL/bin:$PATH" >> $GITHUB_ENV
+          source $GITHUB_ENV
+      - name: Confirm Bun installation
+        run: echo $PATH && bun --version
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
