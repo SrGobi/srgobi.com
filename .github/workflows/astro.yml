@@ -51,12 +51,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Setup Bun
+      - name: Install Bun
         if: steps.detect-package-manager.outputs.manager == 'bun'
         run: |
           curl -fsSL https://bun.sh/install | bash
-          export BUN_INSTALL="$HOME/.bun"
-          export PATH="$BUN_INSTALL/bin:$PATH"
+      - name: Add Bun to PATH
+        if: steps.detect-package-manager.outputs.manager == 'bun'
+        run: |
+          echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
+          echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
+      - name: Source environment variables
+        run: source $GITHUB_ENV
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
