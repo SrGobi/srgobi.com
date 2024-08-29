@@ -2,7 +2,7 @@ name: Publish new version
 
 on:
   workflow_dispatch:
-    
+
   schedule:
     - cron: "0 7 * * *"
 
@@ -22,4 +22,4 @@ jobs:
         git config user.email alejandro@espcustoms.xyz
         git add lastUpdate
         git diff --quiet && git diff --staged --quiet || git commit -m "[bot] Update blog with latest"
-        git push origin main
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/SrGobi/srgobi.com.git main
