@@ -15,9 +15,23 @@ const { description, title, icon } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="og:type" content="website" />
+		<meta name="og:url" content="https://srgobi.com" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://srgobi.com/wallpaper.png" />
+		<meta name="og:lacale" content="es-ES" />
+		<meta name="theme-color" content="#5865F2" />
+		<meta name="application-name" content={title} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@srgobi" />
+		<meta name="twitter:site:id" content="@srgobi" />
+		<meta name="twitter:creator" content="@srgobi" />
+		<meta name="twitter:creator:id" content="@srgobi" />
+		<meta property="twitter:image" content="https://srgobi.com/wallpaper.png" data-react-helmet="true" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href={icon} />
