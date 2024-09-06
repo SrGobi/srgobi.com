@@ -28,7 +28,7 @@ const { title, description, link, date, tags } = Astro.props;
 	</div>
 	<div class="relative flex flex-col gap-4 pb-4 text-zinc-700 dark:text-zinc-300 md:col-span-3">
 		{description}
-		<ul class="grid grid-flow-col grid-rows-2 justify-start xl:flex xl:flex-row mt-2 mb-2 gap-2">
+		<ul class=`${tags.length > 4 ? 'xl:grid' : ''} grid grid-flow-col grid-rows-2 justify-start xl:flex xl:flex-row mt-2 mb-2 gap-2`>
 			{
 				tags.map((tag) => (
 					<li>
