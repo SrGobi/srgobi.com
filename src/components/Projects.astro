@@ -4,30 +4,36 @@ import { TAGS } from './TagsIcons.astro';
 
 const PROJECTS = [
 	{
+		title: 'ESP CUSTOMS LLC',
+		description:
+			'Responsable de la creación y desarrollo integral de la plataforma. Diseñé y desarrollé desde cero tanto el servidor como el panel web, implementando una base de datos robusta, integración de APIs internas/externas y un sistema de eventos para la comunicación y componentización del proyecto. Mejoré la eficiencia del sistema, implementé pruebas exhaustivas y una gestión continua, logrando un despliegue eficiente y un soporte eficaz.',
+		link: 'https://espcustoms.xyz',
+		image: '/projects/espcustoms.webp',
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.ANGULAR, TAGS.BOOTSTRAP, TAGS.MONGODB]
+	},
+	{
 		title: 'AuraFut - Ecommerce',
-		description: [
-			'Desarrollo de una tienda online de productos deportivos estructurada en tres módulos principales. Cada componente ha sido optimizado para ofrecer una experiencia de usuario rápida y eficiente, asegurando un rendimiento óptimo de la plataforma.',
-			'Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.',
-			'Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.',
-			'Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.'
-		],
+		description: `Desarrollo de una tienda online de productos deportivos estructurada en tres módulos principales. Cada componente ha sido optimizado para ofrecer una experiencia de usuario rápida y eficiente, asegurando un rendimiento óptimo de la plataforma.\n
+		Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
+		Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.\n
+		Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
 		link: 'https://aurafut.com',
 		image: '/projects/aurafut.webp',
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB]
 	},
 	{
 		title: 'App Discord Peereira7',
-		description: 'Desarrollo de aplicacion node para la plataforma de Discord en el Servidor oficial de Heretics Pereira, con +50 comandos procesados y todos los eventos posibles de Discord, gestion de usuarios y mensajes',
+		description: 'Creación y gestión de una aplicación de Discord con más de 50 comandos y soporte completo para todos los eventos. Optimización en la gestión de usuarios y mensajes para mejorar la experiencia en el servidor.',
 		link: 'https://discord.gg/peereira7',
 		image: '/projects/Servidor_Peereira7.webp',
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
 	},
 	{
 		title: 'LibertadCripto - ComuniDAO',
-		description: 'Plataforma de ComuniDAO para aprender sobre dinero, cripto y web3 con el contenido que se creó. Se puede acceder a la plataforma a través de Discord y la web. Se creó un bot para el servidor de Discord que permite a los usuarios interactuar con la plataforma y obtener mucho aprendizaje. Los usuarios pueden aprender entre si en la plataforma.',
+		description: 'Plataforma para aprender sobre dinero, cripto y web3 con el contenido que se creó. Se puede acceder a la plataforma a través de Discord y la web. Se creó un bot para el servidor de Discord que permite a los usuarios interactuar con la plataforma y obtener mucho aprendizaje. Los usuarios pueden aprender entre si en la plataforma.',
 		link: 'https://www.instagram.com/libertadcripto',
 		image: '/projects/Servidor_LibertadCripto.webp',
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
 	}
 ];
 ---
@@ -45,7 +51,7 @@ const PROJECTS = [
 				<div class="w-full md:w-1/2 md:max-w-lg">
 					<h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100">{title}</h3>
 					<div class="flex flex-wrap mt-2">
-						<ul class="flex flex-row mb-2 gap-x-2">
+						<ul class="flex xl:flex-row flex-wrap mb-2 gap-2">
 							{tags.map((tag) => (
 								<li>
 									<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
@@ -55,16 +61,47 @@ const PROJECTS = [
 								</li>
 							))}
 						</ul>
-
 						<div class="mt-2 text-zinc-700 dark:text-zinc-400">
-							{Array.isArray(description) ? (
-								<ul class="list-disc list-inside">
-									{description.map((point) => (
-										<li>{point}</li>
-									))}
-								</ul>
+							{description.length > 200 ? (
+								<>
+									{/* Mostramos los primeros 200 caracteres */}
+									<p>{description.slice(0, 200)}...</p>
+									{/* Botón para ver la descripción completa */}
+									<button data-modal-target={`modal-${title}`} data-modal-toggle={`modal-${title}`} class="flex items-center gap-2 group-hover:underline decoration-zinc-500 decoration-dotted underline-offset-4" type="button">
+										Ver más detalles
+										<svg width="13" height="13" stroke="currentColor" stroke-width="2" class="lucide-icon lucide lucide-arrow-up-right opacity-50 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M7 7h10v10" />
+											<path d="M7 17 17 7" />
+										</svg>
+									</button>
+
+									{/* Modal para la descripción completa */}
+									<div id={`modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-2xl transition">
+										<div class="relative p-4 w-full max-w-2xl max-h-full">
+											<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
+												<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
+													<h3 class="text-xl font-semibold text-gray-900 dark:text-white">Detalles de {title}</h3>
+													<button type="button" class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10" data-modal-hide={`modal-${title}`}>
+														<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+															<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+														</svg>
+														<span class="sr-only">Cerrar modal</span>
+													</button>
+												</div>
+												<div class="p-4 md:p-5 space-y-4">
+													<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
+												</div>
+												<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
+													<button data-modal-hide={`modal-${title}`} type="button" class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10">
+														Cerrar
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</>
 							) : (
-								<p>{description}</p>
+								<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
 							)}
 						</div>
 						<footer class="flex gap-x-4 items-end justify-start mt-4">
