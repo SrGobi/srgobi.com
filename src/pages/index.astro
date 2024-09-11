@@ -46,28 +46,30 @@ import SocialPill from '@/components/SocialPill.astro';
 			</nav>
 		</SectionContainer>
 
-		<SectionContainer id="experiencia">
-			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
-				<Briefcase class="size-7" />
-				Experiencia laboral
-			</h2>
-			<Experience />
-		</SectionContainer>
+		<div class="space-y-24">
+			<SectionContainer id="experiencia">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+					<Briefcase class="size-7" />
+					Experiencia laboral
+				</h2>
+				<Experience />
+			</SectionContainer>
 
-		<SectionContainer id="proyectos">
-			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
-				<CodeIcon class="size-7" />
-				Proyectos
-			</h2>
-			<Projects />
-		</SectionContainer>
+			<SectionContainer id="proyectos">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+					<CodeIcon class="size-7" />
+					Proyectos
+				</h2>
+				<Projects />
+			</SectionContainer>
 
-		<SectionContainer id="sobre-mi">
-			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
-				<ProfileCheck class="size-7" />
-				Sobre mi
-			</h2>
-			<AboutMe />
-		</SectionContainer>
+			<SectionContainer id="sobre-mi">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+					<ProfileCheck class="size-7" />
+					Sobre mi
+				</h2>
+				<AboutMe />
+			</SectionContainer>
+		</div>
 	</main>
 </Layout>
