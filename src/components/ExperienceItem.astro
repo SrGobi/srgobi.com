@@ -6,40 +6,21 @@ interface Props {
 	description: string;
 	link?: string;
 	date: string;
-	tags: {
-		name: string;
-		class: string;
-		icon: any;
-	}[];
 }
 
-const { title, description, link, date, tags } = Astro.props;
+const { title, description, link, date } = Astro.props;
 ---
 
-<div class="relative mx-12 pb-12 grid before:absolute before:left-[-25px] before:block before:h-full before:border-l-2 before:border-zinc-200 dark:before:border-zinc-800 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4 md:before:left-[-37px]">
+<div class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]">
 	<div class="relative pb-12 md:col-span-2">
-		<div class="sticky top-28">
-			<svg class="dark:bg-zinc-900 text-zinc-400 dark:text-zinc-700 bg-zinc-100 absolute left-[-38px] ring-1 dark:ring-zinc-700 ring-zinc-200 rounded-full md:left-[-50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"
-				><path fill-rule="evenodd" d="M15.5 11.75a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm1.444-.75a5.001 5.001 0 00-9.888 0H2.75a.75.75 0 100 1.5h4.306a5.001 5.001 0 009.888 0h4.306a.75.75 0 100-1.5h-4.306z" fill="currentColor"></path></svg
-			>
+		<div class="sticky top-[10%]">
+			<span class="text-blue-600 -left-[42px] absolute rounded-full text-5xl">&bull;</span>
 			<h3 class="p-0 m-0 text-xl font-bold text-zinc-700 dark:text-zinc-200">{title}</h3>
 			<time class="p-0 m-0 text-sm text-zinc-700 dark:text-zinc-300">{date}</time>
 		</div>
 	</div>
 	<div class="relative flex flex-col gap-4 pb-4 text-zinc-700 dark:text-zinc-300 md:col-span-3">
 		{description}
-		<ul class=`${tags.length > 4 ? 'xl:grid' : ''} grid grid-flow-col grid-rows-2 justify-start xl:flex xl:flex-row mt-2 mb-2 gap-2`>
-			{
-				tags.map((tag) => (
-					<li>
-						<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 w-[6.5rem]`}>
-							<tag.icon class="size-4" />
-							{tag.name}
-						</span>
-					</li>
-				))
-			}
-		</ul>
 		{
 			link && (
 				<LinkInline href={link}>
