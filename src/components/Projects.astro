@@ -1,8 +1,18 @@
 ---
 import LinkButton from './LinkButton.astro';
 import { TAGS } from './TagsIcons.astro';
+import ExitIcon from '@/components/icons/Exit.astro';
 
 const PROJECTS = [
+	{
+		title: 'CMS - Incantatem',
+		description: `Creación de un CMS personalizado enfocado en la gestión eficiente de archivos e imágenes. Este sistema permite a los administradores subir, editar y organizar archivos multimedia, generando metadatos en formato JSON que vinculan cada elemento con su información correspondiente.\n
+		El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
+		Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
+		link: 'http://45.133.178.8:3000',
+		image: '/projects/custom_cms.webp',
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER]
+	},
 	{
 		title: 'ESP CUSTOMS LLC',
 		description:
@@ -36,6 +46,11 @@ const PROJECTS = [
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
 	}
 ];
+
+// Aquí puedes definir tu lógica
+const handleClick = () => {
+	console.log('El botón fue clicado');
+};
 ---
 
 <div class="flex flex-col gap-y-16">
@@ -44,7 +59,7 @@ const PROJECTS = [
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
-						<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+						<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105 cursor-pointer" loading="lazy" src={image} data-modal-target={`image-modal-${title}`} data-modal-toggle={`image-modal-${title}`} />
 					</div>
 				</div>
 
@@ -74,6 +89,19 @@ const PROJECTS = [
 											<path d="M7 17 17 7" />
 										</svg>
 									</button>
+
+									{/* Modal para la imagen ampliada */}
+									<div id={`image-modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-2xl transition">
+										<div class="relative p-4 w-full max-w-max">
+											<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
+												<button type="button" class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1" data-modal-hide={`image-modal-${title}`}>
+													<ExitIcon class="size-4 text-zinc-300 dark:text-white" />
+													<span class="sr-only">Cerrar modal</span>
+												</button>
+												<img src={image} alt={`Imagen ampliada de ${title}`} class="object-cover w-full h-full rounded-lg" />
+											</div>
+										</div>
+									</div>
 
 									{/* Modal para la descripción completa */}
 									<div id={`modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-2xl transition">
