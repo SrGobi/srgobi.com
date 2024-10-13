@@ -91,7 +91,7 @@ const handleClick = () => {
 									</button>
 
 									{/* Modal para la imagen ampliada */}
-									<div id={`image-modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-2xl transition">
+									<div id={`image-modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full backdrop-blur-2xl transition">
 										<div class="relative p-4 w-full max-w-max">
 											<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
 												<button type="button" class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1" data-modal-hide={`image-modal-${title}`}>
@@ -104,7 +104,7 @@ const handleClick = () => {
 									</div>
 
 									{/* Modal para la descripción completa */}
-									<div id={`modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-2xl transition">
+									<div id={`modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full backdrop-blur-2xl transition">
 										<div class="relative p-4 w-full max-w-2xl max-h-full">
 											<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
 												<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
