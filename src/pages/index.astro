@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import Layout from '@/layouts/Layout.astro';
 
 import AboutMe from '@/components/AboutMe.astro';
@@ -19,12 +20,12 @@ import SocialPill from '@/components/SocialPill.astro';
 	<main class="px-4">
 		<SectionContainer class="py-16 md:py-36">
 			<img class="rounded-full size-12 mb-4" src="/srgobi.webp" alt="srgobi logo" />
-			<h1 class="text-zinc-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
+			<h1 class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
 				Hey, soy srgobi <a href="https://linkedin.com/in/srgobi" target="_blank" rel="noopener" class="flex justify-center items-center hover:scale-105 transition">
 					<Badge>Disponible para trabajar</Badge>
 				</a>
 			</h1>
-			<h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white">
+			<h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-zinc-900 dark:text-zinc-100">
 				<span>+5 años de experiencia.</span><span class="text-yellow-800 dark:text-yellow-200"> Desarrollador Web Full-Stack</span>
 				.<span class="text-red-800 dark:text-red-200"> De Granada, España</span>.
 				<span class="text-sky-800 dark:text-sky-200">Especializado en crear aplicaciones únicas.</span>
@@ -48,7 +49,7 @@ import SocialPill from '@/components/SocialPill.astro';
 
 		<div class="space-y-24">
 			<SectionContainer id="experiencia">
-				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-zinc-900/90 dark:text-zinc-100/90">
 					<Briefcase class="size-7" />
 					Experiencia laboral
 				</h2>
@@ -56,7 +57,7 @@ import SocialPill from '@/components/SocialPill.astro';
 			</SectionContainer>
 
 			<SectionContainer id="proyectos">
-				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-zinc-900/90 dark:text-zinc-100/90">
 					<CodeIcon class="size-7" />
 					Proyectos
 				</h2>
@@ -64,7 +65,7 @@ import SocialPill from '@/components/SocialPill.astro';
 			</SectionContainer>
 
 			<SectionContainer id="sobre-mi">
-				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-zinc-900/90 dark:text-zinc-100/90">
 					<ProfileCheck class="size-7" />
 					Sobre mi
 				</h2>
