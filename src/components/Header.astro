@@ -43,7 +43,7 @@ const navItems = [
 	>
 		{
 			navItems.map((link) => (
-				<a class="hover:bg-white/10 p-1 rounded-full px-2 sm:px-3 transition ease-in text-sm sm:text-base capitalize" aria-label={link.label} href={link.url}>
+				<a class="text-zinc-800 dark:text-zinc-100 hover:bg-white/10 p-1 rounded-full px-2 sm:px-3 transition ease-in text-sm sm:text-base capitalize" aria-label={link.label} href={link.url}>
 					{link.title}
 				</a>
 			))
@@ -113,7 +113,9 @@ const navItems = [
 	}
 	@keyframes nav-shadown {
 		to {
-			@apply shadow-xl;
+			box-shadow:
+				0 10px 15px -3px rgba(0, 0, 0, 0.1),
+				0 4px 6px -2px rgba(0, 0, 0, 0.05);
 		}
 	}
 </style>
