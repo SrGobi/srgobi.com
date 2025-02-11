@@ -2,18 +2,18 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="rounded-lg shadow m-4 bg-black/5 dark:bg-white/5 backdrop-blur-lg w-full xl:w-[1120px] mx-auto mb-10">
-	<div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+<footer class="rounded-lg shadow-sm m-4 bg-black/5 dark:bg-white/5 backdrop-blur-lg w-full xl:w-[1120px] mx-auto mb-10">
+	<div class="w-full mx-auto max-w-(--breakpoint-xl) p-4 md:flex md:items-center md:justify-between">
 		<span class="text-sm sm:text-center text-blue-800/90 dark:text-blue-200/90"
 			>© 2023 - {currentYear}
 			Made with ❤️ by <a href="https://srgobi.com/" class="hover:underline">SrGobi</a>
 		</span>
-		<ul class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0">
+		<ul class="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0">
 			<li>
-				<a href="/#sobre-mi" class="hover:underline me-4 md:me-6">Sobre mí</a>
+				<a href="/#sobre-mi" class="text-zinc-900 dark:text-zinc-100 hover:underline me-4 md:me-6">Sobre mí</a>
 			</li>
 			<li>
-				<a href="#" class="hover:underline">Contacto</a>
+				<a href="#" class="text-zinc-900 dark:text-zinc-100 hover:underline">Contacto</a>
 			</li>
 		</ul>
 	</div>
