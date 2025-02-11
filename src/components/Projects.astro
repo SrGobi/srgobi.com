@@ -7,8 +7,8 @@ const PROJECTS = [
 	{
 		title: 'CMS - Incantatem',
 		description: `Creación de un CMS personalizado enfocado en la gestión eficiente de archivos e imágenes. Este sistema permite a los administradores subir, editar y organizar archivos multimedia, generando metadatos en formato JSON que vinculan cada elemento con su información correspondiente.\n
-		El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
-		Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
+        El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
+        Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
 		link: 'http://45.133.178.8:3000',
 		image: '/projects/custom_cms.webp',
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER]
@@ -24,12 +24,20 @@ const PROJECTS = [
 	{
 		title: 'AuraFut - Ecommerce',
 		description: `Desarrollo de una tienda online de productos deportivos estructurada en tres módulos principales. Cada componente ha sido optimizado para ofrecer una experiencia de usuario rápida y eficiente, asegurando un rendimiento óptimo de la plataforma.\n
-		Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
-		Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.\n
-		Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
+        Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
+        Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.\n
+        Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
 		link: 'https://aurafut.com',
 		image: '/projects/aurafut.webp',
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB]
+	},
+	{
+		title: 'Canvacard - NPM',
+		description: `Paquete NPM que permite a los desarrolladores crear tarjetas personalizadas de forma sencilla y rápida. Canvacard ofrece una amplia gama de plantillas predefinidas y personalizables, así como la posibilidad de crear tarjetas desde cero. Los usuarios pueden añadir texto, imágenes, iconos y formas, y personalizar el diseño con colores y fuentes personalizadas.\n
+				Este proyecto ha sido desarrollado con JavaScript, @napi-rs/canvas, @skyra/gifenc y con TypeScript para realizar los tipados e interfaces . Canvacard es una herramienta versátil y eficiente que permite a los desarrolladores crear tarjetas personalizadas de forma rápida y sencilla.`,
+		link: 'https://canvacard.srgobi.com/',
+		image: '/projects/canvacard.webp',
+		tags: [TAGS.JAVASCRIPT, TAGS.TYPESCRIPT]
 	},
 	{
 		title: 'App Discord Peereira7',
@@ -48,13 +56,29 @@ const PROJECTS = [
 ];
 ---
 
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const modals = document.querySelectorAll('input[type="checkbox"]');
+		modals.forEach((modal) => {
+			modal.addEventListener('change', () => {
+				if ((modal as HTMLInputElement).checked) {
+					document.body.classList.add('overflow-hidden');
+				} else {
+					document.body.classList.remove('overflow-hidden');
+				}
+			});
+		});
+	});
+</script>
 <div class="flex flex-col gap-y-16">
 	{
 		PROJECTS.map(({ image, title, description, tags, link }) => (
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
-						<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105 cursor-pointer" loading="lazy" src={image} data-modal-target={`image-modal-${title}`} data-modal-toggle={`image-modal-${title}`} />
+						<label for={`image-modal-toggle-${title}`} class="cursor-pointer">
+							<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+						</label>
 					</div>
 				</div>
 
@@ -77,45 +101,49 @@ const PROJECTS = [
 									{/* Mostramos los primeros 200 caracteres */}
 									<p>{description.slice(0, 200)}...</p>
 									{/* Botón para ver la descripción completa */}
-									<button data-modal-target={`modal-${title}`} data-modal-toggle={`modal-${title}`} class="flex items-center gap-2 group-hover:underline decoration-zinc-500 decoration-dotted underline-offset-4" type="button">
+									<label for={`modal-toggle-${title}`} class="flex items-center gap-2 group-hover:underline decoration-zinc-500 decoration-dotted underline-offset-4 cursor-pointer">
 										Ver más detalles
 										<svg width="13" height="13" stroke="currentColor" stroke-width="2" class="lucide-icon lucide lucide-arrow-up-right opacity-50 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
 											<path d="M7 7h10v10" />
 											<path d="M7 17 17 7" />
 										</svg>
-									</button>
-
-									{/* Modal para la imagen ampliada */}
-									<div id={`image-modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition">
-										<div class="relative p-4 w-full max-w-max">
-											<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
-												<button type="button" class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1" data-modal-hide={`image-modal-${title}`}>
-													<ExitIcon class="size-4 text-zinc-300 dark:text-white" />
-													<span class="sr-only">Cerrar modal</span>
-												</button>
-												<img src={image} alt={`Imagen ampliada de ${title}`} class="object-cover w-[100vh] h-full rounded-lg" />
+									</label>
+									<div>
+										{/* Modal para la imagen ampliada */}
+										<input type="checkbox" id={`image-modal-toggle-${title}`} class="hidden peer" />
+										<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked:flex hidden">
+											<div class="relative p-4 w-full max-w-max">
+												<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
+													<label for={`image-modal-toggle-${title}`} class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1 cursor-pointer">
+														<ExitIcon class="size-4 text-zinc-300 dark:text-zinc-100" />
+														<span class="sr-only">Cerrar modal</span>
+													</label>
+													<img src={image} alt={`Imagen ampliada de ${title}`} class="object-cover w-[100vh] h-full rounded-lg" />
+												</div>
 											</div>
 										</div>
 									</div>
-
-									{/* Modal para la descripción completa */}
-									<div id={`modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full backdrop-blur-2xl transition">
-										<div class="relative p-4 w-full max-w-2xl max-h-full">
-											<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
-												<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
-													<h3 class="text-xl font-semibold text-gray-900 dark:text-white">Detalles de {title}</h3>
-													<button type="button" class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10" data-modal-hide={`modal-${title}`}>
-														<ExitIcon class="size-4 text-black/90 dark:text-white/90" />
-														<span class="sr-only">Cerrar modal</span>
-													</button>
-												</div>
-												<div class="p-4 md:p-5 space-y-4">
-													<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
-												</div>
-												<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
-													<button data-modal-hide={`modal-${title}`} type="button" class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10">
-														Cerrar
-													</button>
+									<div>
+										{/* Modal para la descripción completa */}
+										<input type="checkbox" id={`modal-toggle-${title}`} class="hidden peer" />
+										<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked:flex hidden">
+											<div class="relative p-4 w-full max-w-2xl max-h-full">
+												<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
+													<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
+														<h3 class="text-xl font-semibold text-gray-900 dark:text-zinc-100">Detalles de {title}</h3>
+														<label for={`modal-toggle-${title}`} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
+															<ExitIcon class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
+															<span class="sr-only">Cerrar modal</span>
+														</label>
+													</div>
+													<div class="p-4 md:p-5 space-y-4">
+														<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
+													</div>
+													<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
+														<label for={`modal-toggle-${title}`} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
+															Cerrar
+														</label>
+													</div>
 												</div>
 											</div>
 										</div>
