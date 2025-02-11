@@ -1,9 +1,8 @@
 ---
 import '@fontsource-variable/onest';
-
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -37,11 +36,10 @@ const { description, title, icon } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href={icon} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 
-	<body class="relative bg-zinc-100 dark:bg-black text-black dark:text-white">
-		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+	<body class="relative bg-zinc-100 dark:bg-black text-zinc-900 dark:text-zinc-100">
 		<div class="absolute top-0 z-[-2] h-screen w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(68,90,255,0.3),rgba(255,255,255,0))]"></div>
 		<Header />
 		<slot />
@@ -134,7 +132,12 @@ const { description, title, icon } = Astro.props;
 			}
 
 			.link-active {
-				@apply bg-white/40 font-semibold dark:bg-white/15 shadow-lg shadow-white/20 backdrop-blur-2xl;
+				background-color: rgba(255, 255, 255, 0.4);
+				font-weight: 600;
+				box-shadow:
+					0 10px 15px -3px rgba(255, 255, 255, 0.2),
+					0 4px 6px -2px rgba(255, 255, 255, 0.2);
+				backdrop-filter: blur(2rem);
 			}
 		</style>
 	</body>
