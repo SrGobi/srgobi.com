@@ -19,7 +19,7 @@ jobs:
     - run: |
         date +%s > lastUpdate
         git config user.name SrGobi
-        git config user.email alejandro@espcustoms.xyz
+        git config user.email contacto@srgobi.com
         git add lastUpdate
         git diff --quiet && git diff --staged --quiet || git commit -m "[bot] Update blog with latest"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/SrGobi/srgobi.com.git main
