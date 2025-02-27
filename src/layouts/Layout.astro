@@ -7,16 +7,17 @@ import { ClientRouter } from 'astro:transitions';
 interface Props {
 	title: string;
 	description: string;
-	icon: string;
 }
 
-const { description, title, icon } = Astro.props;
+const { description, title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es" class="dark">
 	<head>
 		<meta charset="UTF-8" />
+		<base href="https://srgobi.com/" target="_blank" />
+		<link rel="canonical" href="https://srgobi.com/" />
 		<meta name="og:type" content="website" />
 		<meta name="og:url" content="https://srgobi.com" />
 		<meta property="og:title" content={title} />
@@ -32,8 +33,27 @@ const { description, title, icon } = Astro.props;
 		<meta name="twitter:creator:id" content="@srgobi" />
 		<meta property="twitter:image" content="https://srgobi.com/wallpaper.png" data-react-helmet="true" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={icon} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- Favicon -->
+		<link rel="icon" href="/icons/srgobi.ico" type="image/x-icon" />
+
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180x180.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-touch-icon-60x60.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-touch-icon-57x57.png" />
+
+		<!-- Android Icons -->
+		<link rel="icon" sizes="512x512" href="/icons/android-chrome-512x512.png" />
+		<link rel="icon" sizes="192x192" href="/icons/android-chrome-192x192.png" />
+		<link rel="icon" sizes="144x144" href="/icons/android-chrome-144x144.png" />
+		<link rel="icon" sizes="96x96" href="/icons/android-chrome-96x96.png" />
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ClientRouter />
