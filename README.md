@@ -1,54 +1,70 @@
-# Astro Starter Kit: Basics
+# Portfolio de SrGobi
 
-```sh
-npm create astro@latest -- --template basics
-```
+Este es el repositorio de mi portafolio personal, creado con Astro y TailwindCSS. Aquí podrás encontrar información sobre mis proyectos, experiencia laboral y más sobre mí.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 🚀 Tecnologías Utilizadas
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Astro**: Framework moderno para la creación de sitios web estáticos.
+- **TailwindCSS**: Framework de CSS para el diseño de interfaces de usuario.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## 📂 Estructura del Proyecto
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+Dentro de este proyecto, encontrarás las siguientes carpetas y archivos:
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   ├── CNAME
+│   ├── diplomas/
+│   ├── icons/
+│   ├── me.webp
+│   ├── projects/
+│   └── wallpaper.png
 ├── src/
 │   ├── components/
-│   │   └── Card.astro
 │   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/
+│   └── styles/
+├── .astro/
+├── .github/
+├── .vscode/
+├── astro.config.mjs
+├── bun.lockb
+├── lastUpdate
+├── package.json
+├── README.md
+└── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🧞 Comandos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Todos los comandos se ejecutan desde la raíz del proyecto, en una terminal:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Comando                | Acción                                             |
+|------------------------|----------------------------------------------------|
+| `npm install`          | Instala las dependencias                           |
+| `npm run dev`          | Inicia el servidor de desarrollo en `localhost:4321` |
+| `npm run build`        | Construye el sitio de producción en `dist`         |
+| `npm run preview`      | Previsualiza tu construcción localmente            |
+| `npm run astro ...`    | Ejecuta comandos CLI como `astro add`, `astro check` |
+| `npm run astro -- --help` | Obtén ayuda usando el CLI de Astro               |
 
-## 🧞 Commands
+## 🌟 Características
 
-All commands are run from the root of the project, from a terminal:
+- **Diseño Responsivo**: Adaptado para verse bien en cualquier dispositivo.
+- **Proyectos Destacados**: Muestra mis proyectos más importantes con detalles y enlaces.
+- **Experiencia Laboral**: Información sobre mi experiencia y roles anteriores.
+- **Contacto**: Formas de contactarme a través de redes sociales y correo electrónico.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 👀 ¿Quieres saber más?
 
-## 👀 Want to learn more?
+Siéntete libre de revisar la [documentación de Astro](https://docs.astro.build) o unirte a nuestro [servidor de Discord](https://astro.build/chat).
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📞 Contacto
+
+¡Gracias por visitar mi portafolio! Si tienes alguna pregunta o deseas colaborar, no dudes en contactarme.
+
+**SrGobi**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-000?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/srgobi/)
+[![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/SrGobi)
