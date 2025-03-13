@@ -12,7 +12,7 @@ const PROJECTS = [
 		Junto con estas mejoras, corregí errores en enlaces y rutas, asegurando una navegación más intuitiva. Implementé ajustes en la estructura de los cursos, optimizando su accesibilidad y funcionalidad. El diseño fue adaptado para ser completamente responsivo, garantizando una experiencia óptima en dispositivos móviles y tablets. Se añadió la posibilidad de alternar entre un modo oscuro y un modo claro para mejorar la accesibilidad y personalización del entorno. También implementé un sistema de autenticación que incluye registro y login mediante correo y contraseña, con notificaciones enviadas al correo electrónico para mayor seguridad.\n
 		Con todas estas mejoras, GoblinAjedrez es ahora una plataforma más eficiente, rápida y accesible, proporcionando una mejor experiencia tanto para jugadores como para estudiantes de ajedrez.`,
 		link: 'https://www.goblinajedrez.com/',
-		image: ['/projects/goblinajedrez.webp', '/projects/goblinajedrez-1.webp'],
+		image: ['/projects/goblinajedrez-2.webp', '/projects/goblinajedrez-1.webp', '/projects/goblinajedrez.webp'],
 		tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE]
 	},
 	{
@@ -74,7 +74,7 @@ const PROJECTS = [
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
 						<label for={`image-modal-toggle-${title}`} class="cursor-pointer">
-							<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image[0]} />
+							<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image[0]} />
 						</label>
 					</div>
 				</div>
@@ -197,10 +197,8 @@ const PROJECTS = [
 			if (modal) {
 				modal.addEventListener('change', () => {
 					if ((modal as HTMLInputElement).checked) {
-						console.log('Abriendo modal', id);
 						document.body.classList.add('overflow-hidden');
 					} else {
-						console.log('Cerrando modal', id);
 						document.body.classList.remove('overflow-hidden');
 					}
 				});
