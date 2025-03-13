@@ -5,12 +5,23 @@ import ExitIcon from '@/components/icons/Exit.astro';
 
 const PROJECTS = [
 	{
+		title: 'Goblin Ajedrez - Juego de ajedrez online',
+		description: `GoblinAjedrez es un proyecto en el que he trabajado en la optimización y mejora integral de su estructura y funcionalidad. He reescrito la mayoría de los archivos, optimizándolos y definiendo correctamente cada función, constante y parámetro para mejorar la legibilidad y el mantenimiento del código. Además, he realizado una optimización del SEO y la mejora de los metadatos para incrementar la visibilidad en buscadores.\n
+		El logo original en formato PNG fue convertido a SVG para garantizar su correcta visualización en distintos tamaños y dispositivos. En términos de diseño, implementé Bootstrap para mejorar la estética y mantener una experiencia de usuario coherente con la estructura previa del proyecto, basado en Python, archivos .py, templates y archivos estáticos. También realicé una reorganización de la estructura de carpetas internas para optimizar la gestión de los archivos.\n
+		La sección de puzzles ha sido completamente rediseñada e implementada desde cero, incluyendo tres modos de juego distintos: puzzles de tres vidas, puzzles de tres minutos y puzzles por temas. Estos últimos cuentan con una amplia gama de ejercicios diseñados para el entrenamiento, organizados en diferentes tipos, apartados y subcategorías. También se han incorporado puzzles por rating, permitiendo una experiencia más personalizada según el nivel del usuario. Todo el sistema ha sido reescrito con la integración de Chessground, proporcionando un tablero más avanzado que permite modificar tanto el fondo como las piezas, con más de veinte opciones distintas para cada uno. Además, este nuevo tablero es completamente redimensionable y ha mejorado significativamente la experiencia en dispositivos móviles, eliminando errores previos como bloqueos o fallos en la interacción táctil. También se ha añadido soporte para el clic secundario, permitiendo la creación de círculos, flechas y diferentes estados antes de realizar un movimiento.\n
+		Junto con estas mejoras, corregí errores en enlaces y rutas, asegurando una navegación más intuitiva. Implementé ajustes en la estructura de los cursos, optimizando su accesibilidad y funcionalidad. El diseño fue adaptado para ser completamente responsivo, garantizando una experiencia óptima en dispositivos móviles y tablets. Se añadió la posibilidad de alternar entre un modo oscuro y un modo claro para mejorar la accesibilidad y personalización del entorno. También implementé un sistema de autenticación que incluye registro y login mediante correo y contraseña, con notificaciones enviadas al correo electrónico para mayor seguridad.\n
+		Con todas estas mejoras, GoblinAjedrez es ahora una plataforma más eficiente, rápida y accesible, proporcionando una mejor experiencia tanto para jugadores como para estudiantes de ajedrez.`,
+		link: 'https://www.goblinajedrez.com/',
+		image: ['/projects/goblinajedrez.webp', '/projects/goblinajedrez-1.webp'],
+		tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE]
+	},
+	{
 		title: 'CMS - Incantatem',
 		description: `Creación de un CMS personalizado enfocado en la gestión eficiente de archivos e imágenes. Este sistema permite a los administradores subir, editar y organizar archivos multimedia, generando metadatos en formato JSON que vinculan cada elemento con su información correspondiente.\n
-        El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
-        Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
+		El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
+		Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
 		link: 'http://45.133.178.8:3000',
-		image: '/projects/custom_cms.webp',
+		image: ['/projects/custom_cms.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER]
 	},
 	{
@@ -18,58 +29,44 @@ const PROJECTS = [
 		description:
 			'Responsable de la creación y desarrollo integral de la plataforma. Diseñé y desarrollé desde cero tanto el servidor como el panel web, implementando una base de datos robusta, integración de APIs internas/externas y un sistema de eventos para la comunicación y componentización del proyecto. Mejoré la eficiencia del sistema, implementé pruebas exhaustivas y una gestión continua, logrando un despliegue eficiente y un soporte eficaz.',
 		link: 'https://espcustoms.xyz',
-		image: '/projects/espcustoms.webp',
+		image: ['/projects/espcustoms.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.ANGULAR, TAGS.BOOTSTRAP, TAGS.MONGODB]
 	},
 	{
 		title: 'AuraFut - Ecommerce',
 		description: `Desarrollo de una tienda online de productos deportivos estructurada en tres módulos principales. Cada componente ha sido optimizado para ofrecer una experiencia de usuario rápida y eficiente, asegurando un rendimiento óptimo de la plataforma.\n
-        Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
-        Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.\n
-        Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
+		Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
+		Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.\n
+		Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
 		link: 'https://aurafut.com',
-		image: '/projects/aurafut.webp',
+		image: ['/projects/aurafut.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB]
 	},
 	{
 		title: 'Canvacard - NPM',
 		description: `Paquete NPM que permite a los desarrolladores crear tarjetas personalizadas de forma sencilla y rápida. Canvacard ofrece una amplia gama de plantillas predefinidas y personalizables, así como la posibilidad de crear tarjetas desde cero. Los usuarios pueden añadir texto, imágenes, iconos y formas, y personalizar el diseño con colores y fuentes personalizadas.\n
-				Este proyecto ha sido desarrollado con JavaScript, @napi-rs/canvas, @skyra/gifenc y con TypeScript para realizar los tipados e interfaces . Canvacard es una herramienta versátil y eficiente que permite a los desarrolladores crear tarjetas personalizadas de forma rápida y sencilla.`,
+		Este proyecto ha sido desarrollado con JavaScript, @napi-rs/canvas, @skyra/gifenc y con TypeScript para realizar los tipados e interfaces . Canvacard es una herramienta versátil y eficiente que permite a los desarrolladores crear tarjetas personalizadas de forma rápida y sencilla.`,
 		link: 'https://canvacard.srgobi.com/',
-		image: '/projects/canvacard.webp',
+		image: ['/projects/canvacard.webp'],
 		tags: [TAGS.JAVASCRIPT, TAGS.TYPESCRIPT]
 	},
 	{
 		title: 'App Discord Peereira7',
 		description: 'Creación y gestión de una aplicación de Discord con más de 50 comandos y soporte completo para todos los eventos. Optimización en la gestión de usuarios y mensajes para mejorar la experiencia en el servidor.',
 		link: 'https://discord.gg/peereira7',
-		image: '/projects/Servidor_Peereira7.webp',
+		image: ['/projects/Servidor_Peereira7.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
 	},
 	{
 		title: 'LibertadCripto - ComuniDAO',
 		description: 'Plataforma para aprender sobre dinero, cripto y web3 con el contenido que se creó. Se puede acceder a la plataforma a través de Discord y la web. Se creó un bot para el servidor de Discord que permite a los usuarios interactuar con la plataforma y obtener mucho aprendizaje. Los usuarios pueden aprender entre si en la plataforma.',
 		link: 'https://www.instagram.com/libertadcripto',
-		image: '/projects/Servidor_LibertadCripto.webp',
+		image: ['/projects/Servidor_LibertadCripto.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
 	}
 ];
 ---
 
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const modals = document.querySelectorAll('input[type="checkbox"]');
-		modals.forEach((modal) => {
-			modal.addEventListener('change', () => {
-				if ((modal as HTMLInputElement).checked) {
-					document.body.classList.add('overflow-hidden');
-				} else {
-					document.body.classList.remove('overflow-hidden');
-				}
-			});
-		});
-	});
-</script>
 <div class="flex flex-col gap-y-16">
 	{
 		PROJECTS.map(({ image, title, description, tags, link }) => (
@@ -77,7 +74,7 @@ const PROJECTS = [
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
 						<label for={`image-modal-toggle-${title}`} class="cursor-pointer">
-							<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+							<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image[0]} />
 						</label>
 					</div>
 				</div>
@@ -118,7 +115,7 @@ const PROJECTS = [
 														<ExitIcon class="size-4 text-zinc-300 dark:text-zinc-100" />
 														<span class="sr-only">Cerrar modal</span>
 													</label>
-													<img src={image} alt={`Imagen ampliada de ${title}`} class="object-cover w-[100vh] h-full rounded-lg" />
+													<img src={image[0]} alt={`Imagen ampliada de ${title}`} class="object-cover w-[100vh] h-full rounded-lg" />
 												</div>
 											</div>
 										</div>
@@ -136,7 +133,7 @@ const PROJECTS = [
 															<span class="sr-only">Cerrar modal</span>
 														</label>
 													</div>
-													<div class="p-4 md:p-5 space-y-4">
+													<div class="p-4 md:p-5 space-y-4 max-h-[60vh] overflow-y-auto">
 														<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
 													</div>
 													<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
@@ -176,3 +173,38 @@ const PROJECTS = [
 		))
 	}
 </div>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const modalIds = [
+			'modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
+			'modal-toggle-CMS - Incantatem',
+			'modal-toggle-ESP CUSTOMS LLC',
+			'modal-toggle-AuraFut - Ecommerce',
+			'modal-toggle-Canvacard - NPM',
+			'modal-toggle-App Discord Peereira7',
+			'modal-toggle-LibertadCripto - ComuniDAO',
+			'image-modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
+			'image-modal-toggle-CMS - Incantatem',
+			'image-modal-toggle-ESP CUSTOMS LLC',
+			'image-modal-toggle-AuraFut - Ecommerce',
+			'image-modal-toggle-Canvacard - NPM',
+			'image-modal-toggle-App Discord Peereira7',
+			'image-modal-toggle-LibertadCripto - ComuniDAO'
+		];
+
+		modalIds.forEach((id) => {
+			const modal = document.getElementById(id);
+			if (modal) {
+				modal.addEventListener('change', () => {
+					if ((modal as HTMLInputElement).checked) {
+						console.log('Abriendo modal', id);
+						document.body.classList.add('overflow-hidden');
+					} else {
+						console.log('Cerrando modal', id);
+						document.body.classList.remove('overflow-hidden');
+					}
+				});
+			}
+		});
+	});
+</script>
