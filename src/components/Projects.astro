@@ -5,6 +5,15 @@ import ExitIcon from '@/components/icons/Exit.astro';
 
 const PROJECTS = [
 	{
+		title: 'GesFap - Gestión de Fábricas',
+		description: `Desarrollo de una plataforma de gestión integral para fábricas, diseñada para optimizar la administración de recursos y procesos. La aplicación permite a los usuarios gestionar y controlar diversos aspectos de la producción, incluyendo la planificación, seguimiento y análisis de datos en tiempo real.\n
+		La interfaz de usuario es intuitiva y fácil de usar, lo que facilita la navegación y el acceso a la información crítica. La plataforma incluye funcionalidades avanzadas como la generación de informes personalizados, la integración con sistemas externos y la capacidad de adaptarse a las necesidades específicas de cada fábrica.\n
+		Además, se implementaron medidas de seguridad robustas para proteger la información sensible y garantizar la privacidad de los datos. La aplicación está diseñada para ser escalable y flexible, permitiendo a las fábricas crecer y adaptarse a los cambios en el mercado y en la tecnología.`,
+		link: 'https://agrotraz.weaselweb.es/',
+		image: ['/projects/gesfap.webp'],
+		tags: [TAGS.TYPESCRIPT, TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER]
+	},
+	{
 		title: 'Goblin Ajedrez - Juego de ajedrez online',
 		description: `GoblinAjedrez es un proyecto en el que he trabajado en la optimización y mejora integral de su estructura y funcionalidad. He reescrito la mayoría de los archivos, optimizándolos y definiendo correctamente cada función, constante y parámetro para mejorar la legibilidad y el mantenimiento del código. Además, he realizado una optimización del SEO y la mejora de los metadatos para incrementar la visibilidad en buscadores.\n
 		El logo original en formato PNG fue convertido a SVG para garantizar su correcta visualización en distintos tamaños y dispositivos. En términos de diseño, implementé Bootstrap para mejorar la estética y mantener una experiencia de usuario coherente con la estructura previa del proyecto, basado en Python, archivos .py, templates y archivos estáticos. También realicé una reorganización de la estructura de carpetas internas para optimizar la gestión de los archivos.\n
@@ -20,7 +29,7 @@ const PROJECTS = [
 		description: `Creación de un CMS personalizado enfocado en la gestión eficiente de archivos e imágenes. Este sistema permite a los administradores subir, editar y organizar archivos multimedia, generando metadatos en formato JSON que vinculan cada elemento con su información correspondiente.\n
 		El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
 		Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
-		link: 'http://45.133.178.8:3000',
+		link: 'https://github.com/SrGobi',
 		image: ['/projects/custom_cms.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER]
 	},
@@ -176,6 +185,7 @@ const PROJECTS = [
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const modalIds = [
+			'modal-toggle-GesFap - Gestión de Fábricas',
 			'modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
 			'modal-toggle-CMS - Incantatem',
 			'modal-toggle-ESP CUSTOMS LLC',
