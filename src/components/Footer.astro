@@ -1,4 +1,9 @@
 ---
+import Discord from './icons/Discord.astro';
+import GitHub from './icons/GitHub.astro';
+import LinkedIn from './icons/LinkedIn.astro';
+import Mail from './icons/Mail.astro';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -8,12 +13,30 @@ const currentYear = new Date().getFullYear();
 			>© 2023 - {currentYear}
 			Made with ❤️ by <a href="https://srgobi.com/" class="hover:underline">SrGobi</a>
 		</span>
-		<ul class="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0">
+		<ul class="flex flex-wrap items-center gap-4 mt-3 text-sm font-medium sm:mt-0">
 			<li>
-				<a href="/#sobre-mi" class="text-zinc-900 dark:text-zinc-100 hover:underline me-4 md:me-6">Sobre mí</a>
+				<a href="https://discord.com/users/360881334647914506" class="group relative text-zinc-600 dark:text-zinc-400 hover:text-[#5865F2] dark:hover:text-[#5865F2] transition-all duration-300 ease-in-out transform hover:scale-110 hover:-translate-y-1" title="Discord" aria-label="Contactar por Discord" target="_blank" rel="noopener noreferrer">
+					<Discord class="inline w-6 h-6" />
+					<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap dark:text-white text-black rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"> Discord </span>
+				</a>
 			</li>
 			<li>
-				<a href="#" class="text-zinc-900 dark:text-zinc-100 hover:underline">Contacto</a>
+				<a href="https://github.com/SrGobi" class="group relative text-zinc-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:-translate-y-1" title="GitHub" aria-label="Ver perfil de GitHub" target="_blank" rel="noopener noreferrer">
+					<GitHub class="inline w-6 h-6" />
+					<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap dark:text-white text-black rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"> GitHub </span>
+				</a>
+			</li>
+			<li>
+				<a href="https://linkedin.com/in/srgobi" class="group relative text-zinc-600 dark:text-zinc-400 hover:text-blue-700 dark:hover:text-blue-500 transition-all duration-300 ease-in-out transform hover:scale-110 hover:-translate-y-1" title="LinkedIn" aria-label="Ver perfil de LinkedIn" target="_blank" rel="noopener noreferrer">
+					<LinkedIn class="inline w-6 h-6" />
+					<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap dark:text-white text-black rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"> LinkedIn </span>
+				</a>
+			</li>
+			<li>
+				<a href="mailto:contacto@srgobi.com" class="group relative text-zinc-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:-translate-y-1" title="Email" aria-label="Enviar email">
+					<Mail class="inline w-6 h-6" />
+					<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap dark:text-white text-black rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"> Email </span>
+				</a>
 			</li>
 		</ul>
 	</div>
