@@ -4,16 +4,11 @@ import Layout from '@/layouts/Layout.astro';
 
 import AboutMe from '@/components/AboutMe.astro';
 import Badge from '@/components/Badge.astro';
-import Briefcase from '@/components/icons/Briefcase.astro';
-import CodeIcon from '@/components/icons/Code.astro';
 import Experience from '@/components/Experience.astro';
-import GitHubIcon from '@/components/icons/GitHub.astro';
-import LinkedInIcon from '@/components/icons/LinkedIn.astro';
-import MailIcon from '@/components/icons/Mail.astro';
-import ProfileCheck from '@/components/icons/ProfileCheck.astro';
 import Projects from '@/components/Projects.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
 import SocialPill from '@/components/SocialPill.astro';
+import { BriefcaseBusiness, CodeXml, Github, Linkedin, Mail, User } from '@lucide/astro';
 ---
 
 <Layout title="Porfolio de srgobi - Desarrollador y Programador Web con 5 años de experiencia" description="Contrata a srgobi para crear tu aplicación web o móvil. Desarrollador Web Full-Stack. Especializado en crear aplicaciones únicas.">
@@ -33,15 +28,15 @@ import SocialPill from '@/components/SocialPill.astro';
 
 			<nav class="flex gap-4 mt-8 flex-wrap">
 				<SocialPill href="https://linkedin.com/in/srgobi">
-					<LinkedInIcon class="size-4 md:size-6" />
+					<Linkedin class="size-4 md:size-6" />
 					LinkedIn
 				</SocialPill>
 				<SocialPill href="https://github.com/srgobi">
-					<GitHubIcon class="size-4 md:size-6" />
+					<Github class="size-4 md:size-6" />
 					GitHub
 				</SocialPill>
 				<SocialPill href="mailto:contacto@srgobi.com">
-					<MailIcon class="size-4 md:size-6" />
+					<Mail class="size-4 md:size-6" />
 					contacto@srgobi.com
 				</SocialPill>
 			</nav>
@@ -50,7 +45,7 @@ import SocialPill from '@/components/SocialPill.astro';
 		<div class="space-y-24">
 			<SectionContainer id="experiencia">
 				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-zinc-900/90 dark:text-zinc-100/90">
-					<Briefcase class="size-7" />
+					<BriefcaseBusiness class="size-7" />
 					Experiencia laboral
 				</h2>
 				<Experience />
@@ -58,7 +53,7 @@ import SocialPill from '@/components/SocialPill.astro';
 
 			<SectionContainer id="proyectos">
 				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-zinc-900/90 dark:text-zinc-100/90">
-					<CodeIcon class="size-7" />
+					<CodeXml class="size-7" />
 					Proyectos
 				</h2>
 				<Projects />
@@ -66,7 +61,7 @@ import SocialPill from '@/components/SocialPill.astro';
 
 			<SectionContainer id="sobre-mi">
 				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-zinc-900/90 dark:text-zinc-100/90">
-					<ProfileCheck class="size-7" />
+					<User class="size-7" />
 					Sobre mi
 				</h2>
 				<AboutMe />
