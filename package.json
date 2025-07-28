@@ -13,6 +13,7 @@
     "@astrojs/check": "0.9.4",
     "@astrojs/tailwind": "6.0.2",
     "@fontsource-variable/onest": "5.2.9",
+    "@lucide/astro": "^0.532.0",
     "@tailwindcss/vite": "^4.1.6",
     "astro": "5.12.0",
     "astro-robots-txt": "^1.0.0",
