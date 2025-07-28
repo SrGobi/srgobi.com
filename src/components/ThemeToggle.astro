@@ -1,21 +1,30 @@
 ---
-import SunIcon from './icons/Sun.astro';
-import MoonIcon from './icons/Moon.astro';
-import SystemIcon from './icons/System.astro';
+import { Sun, Moon, Monitor } from '@lucide/astro';
 
-const THEMES = ['Light', 'Dark', 'System'];
+const THEMES = [
+	{ name: 'Claro', value: 'light', icon: Sun },
+	{ name: 'Oscuro', value: 'dark', icon: Moon },
+	{ name: 'Sistema', value: 'system', icon: Monitor }
+];
 ---
 
 <div class="relative ml-1 mr-1">
-	<button transition:persist id="theme-toggle-btn" class="appearance-none border-none flex hover:scale-125 transition">
+	<button transition:persist id="theme-toggle-btn" class="appearance-none border-none flex hover:scale-125 transition cursor-pointer">
 		<span class="sr-only">Elige el tema</span>
-		<SunIcon id="light" class="theme-toggle-icon size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
-		<MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
-		<SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
+		<Sun id="light" class="theme-toggle-icon size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
+		<Moon id="dark" class="theme-toggle-icon absolute size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
+		<Monitor id="system" class="theme-toggle-icon absolute size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
 	</button>
 	<div transition:persist id="themes-menu" class="absolute hidden top-8 left-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md">
 		<ul>
-			{THEMES.map((theme) => <li class="text-zinc-800 dark:text-zinc-100 themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-xs">{theme}</li>)}
+			{
+				THEMES.map((theme) => (
+					<li class="text-zinc-800 dark:text-zinc-100 themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-xs flex items-center gap-2">
+						<theme.icon class="size-4 stroke-zinc-800 dark:stroke-zinc-100" />
+						<span>{theme.name}</span>
+					</li>
+				))
+			}
 		</ul>
 	</div>
 </div>
@@ -40,59 +49,91 @@ const THEMES = ['Light', 'Dark', 'System'];
 </style>
 
 <script is:inline>
-	let remove = null;
-	const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-	const themesMenu = document.getElementById('themes-menu');
+	// Evitar múltiples declaraciones
+	if (!window.themeToggleInitialized) {
+		window.themeToggleInitialized = true;
 
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined') {
-			return localStorage.getItem('theme') ?? 'system';
-		}
+		let removeListener = null;
+		const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-
-	const updateIcon = (themePreference) => {
-		document.querySelectorAll('.theme-toggle-icon').forEach((element) => {
-			element.style.scale = element.id === themePreference ? '1' : '0';
-		});
-	};
-
-	const updateTheme = () => {
-		if (remove != null) {
-			remove();
-		}
-		matchMedia.addEventListener('change', updateTheme);
-		remove = () => {
-			matchMedia.removeEventListener('change', updateTheme);
+		const getThemePreference = () => {
+			if (typeof localStorage !== 'undefined') {
+				return localStorage.getItem('data-theme') ?? 'system';
+			}
+			return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		};
 
-		const themePreference = getThemePreference();
-		const isDark = themePreference === 'dark' || (themePreference === 'system' && matchMedia.matches);
+		const updateIcon = (themePreference) => {
+			document.querySelectorAll('.theme-toggle-icon').forEach((element) => {
+				element.style.scale = element.id === themePreference ? '1' : '0';
+			});
+		};
 
-		updateIcon(themePreference);
-		document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-	};
+		const updateTheme = () => {
+			if (removeListener != null) {
+				removeListener();
+			}
+			matchMedia.addEventListener('change', updateTheme);
+			removeListener = () => {
+				matchMedia.removeEventListener('change', updateTheme);
+			};
 
-	updateTheme();
+			const themePreference = getThemePreference();
+			const isDark = themePreference === 'dark' || (themePreference === 'system' && matchMedia.matches);
 
-	document.addEventListener('click', () => themesMenu.classList.remove('open'));
+			updateIcon(themePreference);
 
-	document.getElementById('theme-toggle-btn').addEventListener('click', (e) => {
-		e.stopPropagation();
-		const isClosed = !themesMenu.classList.contains('open');
-		themesMenu.classList[isClosed ? 'add' : 'remove']('open');
-	});
+			// Usar data-theme en lugar de clases
+			if (themePreference === 'system') {
+				document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+			} else {
+				document.documentElement.setAttribute('data-theme', themePreference);
+			}
+		};
 
-	document.querySelectorAll('.themes-menu-option').forEach((element) => {
-		element.addEventListener('click', (e) => {
-			localStorage.setItem('theme', e.target.innerText.toLowerCase().trim());
+		const initializeThemeToggle = () => {
+			const themesMenu = document.getElementById('themes-menu');
+			const themeToggleBtn = document.getElementById('theme-toggle-btn');
+
+			if (!themesMenu || !themeToggleBtn) return;
+
 			updateTheme();
-		});
-	});
 
-	document.addEventListener('astro:after-swap', () => {
-		updateTheme();
-		window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
-	});
+			document.addEventListener('click', () => themesMenu.classList.remove('open'));
+
+			themeToggleBtn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const isClosed = !themesMenu.classList.contains('open');
+				themesMenu.classList[isClosed ? 'add' : 'remove']('open');
+			});
+
+			document.querySelectorAll('.themes-menu-option').forEach((element) => {
+				element.addEventListener('click', (e) => {
+					// Buscar el span que contiene el texto del tema
+					const themeSpan = element.querySelector('span');
+					const themeName = themeSpan ? themeSpan.innerText.toLowerCase().trim() : '';
+
+					// Mapear los nombres en español a los valores en inglés
+					const themeMap = {
+						claro: 'light',
+						oscuro: 'dark',
+						sistema: 'system'
+					};
+
+					const themeValue = themeMap[themeName] || themeName;
+					localStorage.setItem('data-theme', themeValue);
+					updateTheme();
+				});
+			});
+		};
+
+		// Inicializar inmediatamente y después de cada transición
+		initializeThemeToggle();
+
+		document.addEventListener('astro:after-swap', () => {
+			updateTheme();
+			initializeThemeToggle();
+			window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+		});
+	}
 </script>
