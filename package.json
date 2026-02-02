@@ -1,7 +1,7 @@
 {
   "name": "srgobi",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,17 +10,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.4",
-    "@astrojs/tailwind": "6.0.2",
-    "@fontsource-variable/onest": "5.2.9",
-    "@lucide/astro": "^0.532.0",
-    "@tailwindcss/vite": "^4.1.6",
-    "astro": "5.12.0",
-    "astro-robots-txt": "^1.0.0",
-    "tailwindcss": "^4.1.6",
-    "typescript": "5.8.3"
+    "@astrojs/check": "0.9.6",
+    "@fontsource-variable/onest": "5.2.11",
+    "@lucide/astro": "0.532.0",
+    "@tailwindcss/vite": "4.1.18",
+    "astro": "5.17.1",
+    "astro-robots-txt": "1.0.0",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.9.3"
   },
   "trustedDependencies": [
-    "@tailwindcss/oxide"
+    "@tailwindcss/oxide",
+    "esbuild",
+    "sharp"
   ]
 }
