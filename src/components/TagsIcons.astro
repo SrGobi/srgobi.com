@@ -1,4 +1,5 @@
 ---
+import { Check, Clock } from '@lucide/astro';
 import Astroo from './icons/Astroo.astro';
 import Angular from './icons/Angular.astro';
 import Bootstrap from './icons/Bootstrap.astro';
@@ -20,8 +21,6 @@ import SQLite from './icons/SQLite.astro';
 import WordPress from './icons/WordPress.astro';
 import VPS from './icons/VPS.astro';
 import Cloud from './icons/Cloud.astro';
-import Check from './icons/Check.astro';
-import InProgress from './icons/InProgress.astro';
 import Vercel from './icons/Vercel.astro';
 import Express from './icons/Express.astro';
 import Vite from './icons/Vite.astro';
@@ -169,7 +168,7 @@ export const PROJECT_STATUS = {
 	IN_PROGRESS: {
 		name: 'En Proceso',
 		class: 'dark:bg-[#F59E0B60] bg-[#F59E0B60] dark:text-zinc-100 text-zinc-900',
-		icon: InProgress
+		icon: Clock
 	}
 };
 ---
