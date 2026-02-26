@@ -1,0 +1,55 @@
+---
+import { X } from '@lucide/astro';
+
+interface Props {
+	id: string;
+	title?: string;
+	maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'max';
+	showHeader?: boolean;
+	showFooter?: boolean;
+	footerContent?: string;
+}
+
+const { id, title, maxWidth = '2xl', showHeader = true, showFooter = false, footerContent = 'Cerrar' } = Astro.props;
+
+const maxWidthClasses = {
+	sm: 'max-w-sm',
+	md: 'max-w-md',
+	lg: 'max-w-lg',
+	xl: 'max-w-xl',
+	'2xl': 'max-w-2xl',
+	'3xl': 'max-w-3xl',
+	max: 'max-w-max'
+};
+---
+
+<input type="checkbox" id={id} class="hidden peer" />
+<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked:flex hidden">
+	<div class={`relative p-4 w-full ${maxWidthClasses[maxWidth]} max-h-full`}>
+		<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
+			{
+				showHeader && (
+					<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
+						{title && <h3 class="text-xl font-semibold text-gray-900 dark:text-zinc-100">{title}</h3>}
+						<label for={id} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
+							<X class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
+							<span class="sr-only">Cerrar modal</span>
+						</label>
+					</div>
+				)
+			}
+			<div class="p-4 md:p-5 space-y-4 max-h-[60vh] overflow-y-auto">
+				<slot />
+			</div>
+			{
+				showFooter && (
+					<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
+						<label for={id} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base text-zinc-800 dark:text-zinc-100 transition hover:scale-110 hover:bg-white/10 cursor-pointer">
+							{footerContent}
+						</label>
+					</div>
+				)
+			}
+		</div>
+	</div>
+</div>
