@@ -68,42 +68,62 @@ const navItems = [
 		const headerNavItems = document.querySelectorAll('header nav a');
 		const mobileNavItems = document.querySelectorAll('.mobile-nav a');
 
+		let currentSection = '';
+
+		// Function to update navigation
+		const updateNav = (sectionId: string) => {
+			// Update desktop nav
+			headerNavItems.forEach((item) => {
+				if (item.getAttribute('aria-label') === sectionId) {
+					item.classList.add('text-blue-500');
+				} else {
+					item.classList.remove('text-blue-500');
+				}
+			});
+
+			// Update mobile nav
+			mobileNavItems.forEach((item) => {
+				const itemSection = item.getAttribute('data-section');
+				if (itemSection === sectionId) {
+					item.classList.add('active');
+				} else {
+					item.classList.remove('active');
+				}
+			});
+		};
+
 		const callback = (entries: any[]) => {
 			entries.forEach((entry) => {
+				const sectionId = entry.target.id;
+
 				if (entry.isIntersecting) {
-					const sectionId = entry.target.id;
-
-					// Update desktop nav
-					headerNavItems.forEach((item) => {
-						if (item.getAttribute('aria-label') === sectionId) {
-							item.classList.add('text-blue-500');
-						} else {
-							item.classList.remove('text-blue-500');
-						}
-					});
-
-					// Update mobile nav
-					mobileNavItems.forEach((item) => {
-						const itemSection = item.getAttribute('data-section');
-						if (itemSection === sectionId) {
-							item.classList.add('active');
-						} else {
-							item.classList.remove('active');
-						}
-					});
+					currentSection = sectionId;
+					updateNav(currentSection);
 				}
 			});
 		};
 
 		const observer = new IntersectionObserver(callback, {
 			root: null,
-			rootMargin: '0px',
-			threshold: 0.3
+			rootMargin: '-15% 0px -55% 0px',
+			threshold: [0, 0.15, 0.3, 0.5]
 		});
 
 		sections.forEach((section) => {
 			observer.observe(section);
 		});
+
+		// Check on load which section is visible
+		const checkInitialSection = () => {
+			const hash = window.location.hash.slice(1);
+			if (hash) {
+				currentSection = hash;
+				updateNav(currentSection);
+			}
+		};
+
+		// Initial check with requestAnimationFrame
+		requestAnimationFrame(checkInitialSection);
 
 		// Cleanup function
 		document.onvisibilitychange = () => {
