@@ -53,9 +53,9 @@ const navItems = [
 	<div class="grid h-full grid-cols-4 font-medium py-2 px-2">
 		{
 			navItems.map((link) => (
-				<a href={link.url} class="inline-flex flex-col items-center justify-center gap-1 px-2 py-2 hover:bg-white/20 dark:hover:bg-white/10 active:scale-95 group rounded-full transition-all duration-300 ease-in-out" aria-label={link.label}>
-					<link.icon size={20} class="text-zinc-600 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500 group-hover:scale-110 transition-all duration-300" />
-					<span class="text-[10px] font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500 transition-all duration-300">{link.title}</span>
+				<a href={link.url} class="mobile-nav-item inline-flex flex-col items-center justify-center gap-1 px-2 py-2 hover:bg-white/20 dark:hover:bg-white/10 active:scale-95 group rounded-full transition-all duration-300 ease-in-out" aria-label={link.label} data-section={link.label}>
+					<link.icon size={20} class="nav-icon text-zinc-600 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500 group-hover:scale-110 transition-all duration-300" />
+					<span class="nav-text text-[10px] font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500 transition-all duration-300">{link.title}</span>
 				</a>
 			))
 		}
@@ -64,23 +64,31 @@ const navItems = [
 
 <script>
 	document.addEventListener('astro:page-load', () => {
-		const sections = document.querySelectorAll('section');
-		const navItems = document.querySelectorAll('header nav a, .mobile-nav a');
+		const sections = document.querySelectorAll('section[id]');
+		const headerNavItems = document.querySelectorAll('header nav a');
+		const mobileNavItems = document.querySelectorAll('.mobile-nav a');
 
 		const callback = (entries: any[]) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					navItems.forEach((item) => {
-						if (item.getAttribute('aria-label') == entry.target.id) {
+					const sectionId = entry.target.id;
+
+					// Update desktop nav
+					headerNavItems.forEach((item) => {
+						if (item.getAttribute('aria-label') === sectionId) {
 							item.classList.add('text-blue-500');
-							item.classList.add('bg-white/20');
-							item.classList.add('dark:bg-white/10');
-							item.classList.add('scale-105');
 						} else {
 							item.classList.remove('text-blue-500');
-							item.classList.remove('bg-white/20');
-							item.classList.remove('dark:bg-white/10');
-							item.classList.remove('scale-105');
+						}
+					});
+
+					// Update mobile nav
+					mobileNavItems.forEach((item) => {
+						const itemSection = item.getAttribute('data-section');
+						if (itemSection === sectionId) {
+							item.classList.add('active');
+						} else {
+							item.classList.remove('active');
 						}
 					});
 				}
@@ -117,6 +125,30 @@ const navItems = [
 		animation: mobile-nav-shadown 1s linear both;
 		animation-timeline: scroll();
 		animation-range: 0 400px;
+	}
+
+	/* Estado activo para navegación móvil */
+	.mobile-nav-item.active {
+		background-color: rgba(255, 255, 255, 0.2);
+		transform: scale(1.05);
+	}
+
+	:global(.dark) .mobile-nav-item.active {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.mobile-nav-item.active .nav-icon,
+	.mobile-nav-item.active .nav-text {
+		color: rgb(37 99 235) !important;
+	}
+
+	:global(.dark) .mobile-nav-item.active .nav-icon,
+	:global(.dark) .mobile-nav-item.active .nav-text {
+		color: rgb(59 130 246) !important;
+	}
+
+	.mobile-nav-item.active .nav-icon {
+		transform: scale(1.1);
 	}
 
 	@keyframes nav-shadown {
