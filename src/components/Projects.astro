@@ -1,7 +1,7 @@
 ---
 import { Link2 } from '@lucide/astro';
 import LinkButton from './LinkButton.astro';
-import { TAGS } from './TagsIcons.astro';
+import { TAGS, ADMIN_TOOLS, PROJECT_STATUS } from './TagsIcons.astro';
 import ExitIcon from '@/components/icons/Exit.astro';
 
 const PROJECTS = [
@@ -12,7 +12,9 @@ const PROJECTS = [
 		Además, se implementaron medidas de seguridad robustas para proteger la información sensible y garantizar la privacidad de los datos. La aplicación está diseñada para ser escalable y flexible, permitiendo a las fábricas crecer y adaptarse a los cambios en el mercado y en la tecnología.`,
 		link: 'https://www.agrotraz.com/',
 		image: ['/projects/gesfap.webp'],
-		tags: [TAGS.TYPESCRIPT, TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER, TAGS.MARIADB]
+		tags: [TAGS.TYPESCRIPT, TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER, TAGS.MARIADB],
+		status: PROJECT_STATUS.IN_PROGRESS,
+		adminTool: ADMIN_TOOLS.VPS
 	},
 	{
 		title: 'Goblin Ajedrez - Juego de ajedrez online',
@@ -23,7 +25,21 @@ const PROJECTS = [
 		Con todas estas mejoras, GoblinAjedrez es ahora una plataforma más eficiente, rápida y accesible, proporcionando una mejor experiencia tanto para jugadores como para estudiantes de ajedrez.`,
 		link: 'https://goblinajedrez.com/',
 		image: ['/projects/goblinajedrez.webp', '/projects/goblinajedrez-1.webp', '/projects/goblinajedrez.webp'],
-		tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE]
+		tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE],
+		status: PROJECT_STATUS.IN_PROGRESS,
+		adminTool: ADMIN_TOOLS.VPS,
+		history: [
+			{
+				date: '2024-01-15',
+				tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE],
+				description: 'Versión inicial con Python y Flask'
+			},
+			{
+				date: '2025-12-10',
+				tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.VITE, TAGS.NODE, TAGS.EXPRESS, TAGS.MARIADB],
+				description: 'Migración completa a React y TypeScript con backend en Express'
+			}
+		]
 	},
 	{
 		title: 'CMS - Incantatem',
@@ -32,7 +48,9 @@ const PROJECTS = [
 		Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
 		link: 'https://github.com/SrGobi',
 		image: ['/projects/custom_cms.webp'],
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.VPS
 	},
 	{
 		title: 'ESP CUSTOMS LLC',
@@ -40,7 +58,9 @@ const PROJECTS = [
 			'Responsable de la creación y desarrollo integral de la plataforma. Diseñé y desarrollé desde cero tanto el servidor como el panel web, implementando una base de datos robusta, integración de APIs internas/externas y un sistema de eventos para la comunicación y componentización del proyecto. Mejoré la eficiencia del sistema, implementé pruebas exhaustivas y una gestión continua, logrando un despliegue eficiente y un soporte eficaz.',
 		link: 'https://espcustoms.xyz',
 		image: ['/projects/espcustoms.webp'],
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.ANGULAR, TAGS.BOOTSTRAP, TAGS.MONGODB]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.ANGULAR, TAGS.BOOTSTRAP, TAGS.MONGODB],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.CLOUD
 	},
 	{
 		title: 'AuraFut - Ecommerce',
@@ -50,7 +70,9 @@ const PROJECTS = [
 		Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
 		link: 'https://aurafut.com',
 		image: ['/projects/aurafut.webp'],
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.SHOPIFY
 	},
 	{
 		title: 'Canvacard - NPM',
@@ -58,28 +80,34 @@ const PROJECTS = [
 		Este proyecto ha sido desarrollado con JavaScript, @napi-rs/canvas, @skyra/gifenc y con TypeScript para realizar los tipados e interfaces . Canvacard es una herramienta versátil y eficiente que permite a los desarrolladores crear tarjetas personalizadas de forma rápida y sencilla.`,
 		link: 'https://canvacard.srgobi.com/',
 		image: ['/projects/canvacard.webp'],
-		tags: [TAGS.JAVASCRIPT, TAGS.TYPESCRIPT]
+		tags: [TAGS.JAVASCRIPT, TAGS.TYPESCRIPT],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.VERCEL
 	},
 	{
 		title: 'App Discord Peereira7',
 		description: 'Creación y gestión de una aplicación de Discord con más de 50 comandos y soporte completo para todos los eventos. Optimización en la gestión de usuarios y mensajes para mejorar la experiencia en el servidor.',
 		link: 'https://discord.gg/peereira7',
 		image: ['/projects/Servidor_Peereira7.webp'],
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.VPS
 	},
 	{
 		title: 'LibertadCripto - ComuniDAO',
 		description: 'Plataforma para aprender sobre dinero, cripto y web3 con el contenido que se creó. Se puede acceder a la plataforma a través de Discord y la web. Se creó un bot para el servidor de Discord que permite a los usuarios interactuar con la plataforma y obtener mucho aprendizaje. Los usuarios pueden aprender entre si en la plataforma.',
 		link: 'https://www.instagram.com/libertadcripto',
 		image: ['/projects/Servidor_LibertadCripto.webp'],
-		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB]
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.VPS
 	}
 ];
 ---
 
 <div class="flex flex-col gap-y-16">
 	{
-		PROJECTS.map(({ image, title, description, tags, link }) => (
+		PROJECTS.map(({ image, title, description, tags, link, status, adminTool, history }) => (
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
@@ -90,18 +118,41 @@ const PROJECTS = [
 				</div>
 
 				<div class="w-full md:w-1/2 md:max-w-lg">
-					<h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100">{title}</h3>
+					<div class="flex items-start justify-between gap-2">
+						<h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100">{title}</h3>
+						<span class={`flex gap-x-1 items-center rounded-full text-xs ${status.class} py-1 px-2 whitespace-nowrap`}>
+							<status.icon class="size-3" />
+							{status.name}
+						</span>
+					</div>
 					<div class="flex flex-wrap mt-2">
-						<ul class="flex xl:flex-row flex-wrap mb-2 gap-2">
-							{tags.map((tag) => (
-								<li>
-									<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
-										<tag.icon class="size-4" />
-										{tag.name}
-									</span>
-								</li>
-							))}
-						</ul>
+						<div class="w-full mb-2">
+							<p class="text-xs text-zinc-600 dark:text-zinc-500 mb-1">Tecnologías:</p>
+							<ul class="flex xl:flex-row flex-wrap gap-2">
+								{tags.map((tag) => (
+									<li>
+										<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
+											<tag.icon class="size-4" />
+											{tag.name}
+										</span>
+									</li>
+								))}
+							</ul>
+						</div>
+						<div class="w-full mb-2">
+							<p class="text-xs text-zinc-600 dark:text-zinc-500 mb-1">Administración:</p>
+							<span class={`inline-flex gap-x-2 rounded-full text-xs ${adminTool.class} py-1 px-2`}>
+								<adminTool.icon class="size-4" />
+								{adminTool.name}
+							</span>
+						</div>
+						{history && history.length > 0 && (
+							<div class="w-full mb-2">
+								<label for={`history-modal-toggle-${title}`} class="inline-flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 cursor-pointer transition">
+									📋 Ver histórico de cambios ({history.length})
+								</label>
+							</div>
+						)}
 						<div class="mt-2 text-zinc-700 dark:text-zinc-400">
 							{description.length > 200 ? (
 								<>
@@ -160,6 +211,51 @@ const PROJECTS = [
 								<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
 							)}
 						</div>
+						{history && history.length > 0 && (
+							<div>
+								{/* Modal para el histórico de cambios */}
+								<input type="checkbox" id={`history-modal-toggle-${title}`} class="hidden peer" />
+								<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked:flex hidden">
+									<div class="relative p-4 w-full max-w-3xl max-h-full">
+										<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
+											<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
+												<h3 class="text-xl font-semibold text-gray-900 dark:text-zinc-100">📋 Histórico de Cambios - {title}</h3>
+												<label for={`history-modal-toggle-${title}`} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
+													<ExitIcon class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
+													<span class="sr-only">Cerrar modal</span>
+												</label>
+											</div>
+											<div class="p-4 md:p-5 space-y-4 max-h-[60vh] overflow-y-auto">
+												<div class="space-y-4">
+													{history.map((entry, index) => (
+														<div class="border dark:border-white/10 border-zinc-300 rounded-lg p-4">
+															<div class="flex items-center justify-between mb-3">
+																<span class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{index === 0 ? '📅 Versión Inicial' : `📅 Actualización ${index}`}</span>
+																<span class="text-xs text-zinc-600 dark:text-zinc-400">{entry.date}</span>
+															</div>
+															<p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">{entry.description}</p>
+															<div class="flex flex-wrap gap-2">
+																{entry.tags.map((tag) => (
+																	<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+																		<tag.icon class="size-4" />
+																		{tag.name}
+																	</span>
+																))}
+															</div>
+														</div>
+													))}
+												</div>
+											</div>
+											<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
+												<label for={`history-modal-toggle-${title}`} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
+													Cerrar
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
 						<footer class="flex gap-x-4 items-end justify-start mt-4">
 							<LinkButton href={link}>
 								<Link2 class="size-4 mr-1" />
@@ -190,7 +286,8 @@ const PROJECTS = [
 			'image-modal-toggle-AuraFut - Ecommerce',
 			'image-modal-toggle-Canvacard - NPM',
 			'image-modal-toggle-App Discord Peereira7',
-			'image-modal-toggle-LibertadCripto - ComuniDAO'
+			'image-modal-toggle-LibertadCripto - ComuniDAO',
+			'history-modal-toggle-Goblin Ajedrez - Juego de ajedrez online'
 		];
 
 		modalIds.forEach((id) => {
