@@ -49,23 +49,23 @@ const navItems = [
 	</nav>
 </header>
 
-<div class="md:invisible visible fixed bottom-0 left-1/2 -translate-x-1/2 z-50 mb-4 w-[90%] max-w-md rounded-full bg-neutral-200/70 dark:bg-black/50 backdrop-blur-sm shadow-lg">
-	<div class="grid h-full grid-cols-4 font-medium py-2">
+<nav class="md:invisible visible fixed bottom-0 left-1/2 -translate-x-1/2 z-50 mb-4 w-[90%] max-w-md rounded-full bg-neutral-200/70 dark:bg-black/50 backdrop-blur-sm shadow-lg mobile-nav">
+	<div class="grid h-full grid-cols-4 font-medium py-2 px-2">
 		{
 			navItems.map((link) => (
-				<a href={link.url} class="inline-flex flex-col items-center justify-center px-2 hover:bg-white/10 dark:hover:bg-zinc-800 group rounded-full transition" aria-label={link.label}>
-					<link.icon size={22} class="text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" />
-					<span class="text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">{link.title}</span>
+				<a href={link.url} class="inline-flex flex-col items-center justify-center gap-1 px-2 py-2 hover:bg-white/20 dark:hover:bg-white/10 active:scale-95 group rounded-full transition-all duration-300 ease-in-out" aria-label={link.label}>
+					<link.icon size={20} class="text-zinc-600 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500 group-hover:scale-110 transition-all duration-300" />
+					<span class="text-[10px] font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500 transition-all duration-300">{link.title}</span>
 				</a>
 			))
 		}
 	</div>
-</div>
+</nav>
 
 <script>
 	document.addEventListener('astro:page-load', () => {
 		const sections = document.querySelectorAll('section');
-		const navItems = document.querySelectorAll('header nav a');
+		const navItems = document.querySelectorAll('header nav a, .mobile-nav a');
 
 		const callback = (entries: any[]) => {
 			entries.forEach((entry) => {
@@ -73,8 +73,14 @@ const navItems = [
 					navItems.forEach((item) => {
 						if (item.getAttribute('aria-label') == entry.target.id) {
 							item.classList.add('text-blue-500');
+							item.classList.add('bg-white/20');
+							item.classList.add('dark:bg-white/10');
+							item.classList.add('scale-105');
 						} else {
 							item.classList.remove('text-blue-500');
+							item.classList.remove('bg-white/20');
+							item.classList.remove('dark:bg-white/10');
+							item.classList.remove('scale-105');
 						}
 					});
 				}
@@ -106,11 +112,26 @@ const navItems = [
 		animation-timeline: scroll();
 		animation-range: 0 400px;
 	}
+
+	.mobile-nav {
+		animation: mobile-nav-shadown 1s linear both;
+		animation-timeline: scroll();
+		animation-range: 0 400px;
+	}
+
 	@keyframes nav-shadown {
 		to {
 			box-shadow:
 				0 10px 15px -3px rgba(0, 0, 0, 0.1),
 				0 4px 6px -2px rgba(0, 0, 0, 0.05);
+		}
+	}
+
+	@keyframes mobile-nav-shadown {
+		to {
+			box-shadow:
+				0 -10px 25px -5px rgba(0, 0, 0, 0.15),
+				0 -8px 10px -6px rgba(0, 0, 0, 0.1);
 		}
 	}
 </style>
