@@ -1,8 +1,7 @@
 ---
-import { Link2 } from '@lucide/astro';
+import { Link2, X } from '@lucide/astro';
 import LinkButton from './LinkButton.astro';
 import { TAGS, ADMIN_TOOLS, PROJECT_STATUS } from './TagsIcons.astro';
-import ExitIcon from '@/components/icons/Exit.astro';
 
 const PROJECTS = [
 	{
@@ -173,7 +172,7 @@ const PROJECTS = [
 											<div class="relative p-4 w-full max-w-max">
 												<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
 													<label for={`image-modal-toggle-${title}`} class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1 cursor-pointer">
-														<ExitIcon class="size-4 text-zinc-300 dark:text-zinc-100" />
+														<X class="size-4 text-zinc-300 dark:text-zinc-100" />
 														<span class="sr-only">Cerrar modal</span>
 													</label>
 													<img src={image[0]} alt={`Imagen ampliada de ${title}`} class="object-cover w-[100vh] h-full rounded-lg" />
@@ -190,7 +189,7 @@ const PROJECTS = [
 													<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
 														<h3 class="text-xl font-semibold text-gray-900 dark:text-zinc-100">Detalles de {title}</h3>
 														<label for={`modal-toggle-${title}`} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
-															<ExitIcon class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
+															<X class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
 															<span class="sr-only">Cerrar modal</span>
 														</label>
 													</div>
@@ -221,7 +220,7 @@ const PROJECTS = [
 											<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
 												<h3 class="text-xl font-semibold text-gray-900 dark:text-zinc-100">📋 Histórico de Cambios - {title}</h3>
 												<label for={`history-modal-toggle-${title}`} class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10 cursor-pointer">
-													<ExitIcon class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
+													<X class="size-4 text-zinc-900/90 dark:text-zinc-100/90" />
 													<span class="sr-only">Cerrar modal</span>
 												</label>
 											</div>
