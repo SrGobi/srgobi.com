@@ -1,0 +1,24 @@
+---
+import { X } from '@lucide/astro';
+
+interface Props {
+	id: string;
+	imageSrc: string;
+	imageAlt: string;
+}
+
+const { id, imageSrc, imageAlt } = Astro.props;
+---
+
+<input type="checkbox" id={id} class="hidden peer" />
+<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked:flex hidden">
+	<div class="relative p-4 w-full max-w-max">
+		<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
+			<label for={id} class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1 cursor-pointer">
+				<X class="size-4 text-zinc-300 dark:text-zinc-100" />
+				<span class="sr-only">Cerrar modal</span>
+			</label>
+			<img src={imageSrc} alt={imageAlt} class="object-cover w-[100vh] h-full rounded-lg" />
+		</div>
+	</div>
+</div>
