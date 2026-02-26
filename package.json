@@ -1,7 +1,7 @@
 {
   "name": "srgobi",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -13,10 +13,10 @@
     "@astrojs/check": "0.9.6",
     "@fontsource-variable/onest": "5.2.11",
     "@lucide/astro": "0.532.0",
-    "@tailwindcss/vite": "4.1.18",
-    "astro": "5.17.1",
+    "@tailwindcss/vite": "4.2.1",
+    "astro": "5.18.0",
     "astro-robots-txt": "1.0.0",
-    "tailwindcss": "4.1.18",
+    "tailwindcss": "4.2.1",
     "typescript": "5.9.3"
   },
   "trustedDependencies": [
