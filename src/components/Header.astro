@@ -68,68 +68,57 @@ const navItems = [
 		const headerNavItems = document.querySelectorAll('header nav a');
 		const mobileNavItems = document.querySelectorAll('.mobile-nav a');
 
-		let currentSection = '';
+		// Track intersection ratio per section to always pick the most visible one
+		const visibleSections = new Map<string, number>();
 
-		// Function to update navigation
 		const updateNav = (sectionId: string) => {
-			// Update desktop nav
 			headerNavItems.forEach((item) => {
-				if (item.getAttribute('aria-label') === sectionId) {
-					item.classList.add('text-blue-500');
-				} else {
-					item.classList.remove('text-blue-500');
-				}
+				item.classList.toggle('text-blue-500', item.getAttribute('aria-label') === sectionId);
 			});
-
-			// Update mobile nav
 			mobileNavItems.forEach((item) => {
-				const itemSection = item.getAttribute('data-section');
-				if (itemSection === sectionId) {
-					item.classList.add('active');
-				} else {
-					item.classList.remove('active');
-				}
+				item.classList.toggle('active', item.getAttribute('data-section') === sectionId);
 			});
 		};
 
-		const callback = (entries: any[]) => {
-			entries.forEach((entry) => {
-				const sectionId = entry.target.id;
-
-				if (entry.isIntersecting) {
-					currentSection = sectionId;
-					updateNav(currentSection);
+		const getActiveSection = (): string => {
+			let maxRatio = 0;
+			let activeId = '';
+			visibleSections.forEach((ratio, id) => {
+				if (ratio > maxRatio) {
+					maxRatio = ratio;
+					activeId = id;
 				}
 			});
+			return activeId;
+		};
+
+		const callback = (entries: IntersectionObserverEntry[]) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					visibleSections.set(entry.target.id, entry.intersectionRatio);
+				} else {
+					visibleSections.delete(entry.target.id);
+				}
+			});
+
+			const activeSection = getActiveSection();
+			if (activeSection) updateNav(activeSection);
 		};
 
 		const observer = new IntersectionObserver(callback, {
 			root: null,
 			rootMargin: '-15% 0px -55% 0px',
-			threshold: [0, 0.15, 0.3, 0.5]
+			threshold: Array.from({ length: 11 }, (_, i) => i / 10)
 		});
 
-		sections.forEach((section) => {
-			observer.observe(section);
-		});
+		sections.forEach((section) => observer.observe(section));
 
-		// Check on load which section is visible
-		const checkInitialSection = () => {
-			const hash = window.location.hash.slice(1);
-			if (hash) {
-				currentSection = hash;
-				updateNav(currentSection);
-			}
-		};
+		// Handle initial hash without artificial delays
+		const hash = window.location.hash.slice(1);
+		if (hash) updateNav(hash);
 
-		// Initial check with requestAnimationFrame
-		requestAnimationFrame(checkInitialSection);
-
-		// Cleanup function
 		document.onvisibilitychange = () => {
-			if (document.visibilityState === 'hidden') {
-				observer.disconnect();
-			}
+			if (document.visibilityState === 'hidden') observer.disconnect();
 		};
 	});
 </script>
