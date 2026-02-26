@@ -17,6 +17,15 @@ import TypeScript from './icons/TypeScript.astro';
 import JavaScript from './icons/JavaScript.astro';
 import HTML from './icons/HTML.astro';
 import SQLite from './icons/SQLite.astro';
+import WordPress from './icons/WordPress.astro';
+import VPS from './icons/VPS.astro';
+import Cloud from './icons/Cloud.astro';
+import Check from './icons/Check.astro';
+import InProgress from './icons/InProgress.astro';
+import Vercel from './icons/Vercel.astro';
+import Express from './icons/Express.astro';
+import Vite from './icons/Vite.astro';
+import Shopify from './icons/Shopify.astro';
 
 export const TAGS = {
 	ASTRO: {
@@ -108,6 +117,59 @@ export const TAGS = {
 		name: 'SQLite',
 		class: 'dark:bg-[#003B5760] bg-[#003B5760] dark:text-zinc-100 text-zinc-900',
 		icon: SQLite
+	},
+	EXPRESS: {
+		name: 'Express',
+		class: 'dark:bg-[#00000060] bg-[#00000060] dark:text-zinc-100 text-zinc-900',
+		icon: Express
+	},
+	VITE: {
+		name: 'Vite',
+		class: 'dark:bg-[#646CFF60] bg-[#646CFF60] dark:text-zinc-100 text-zinc-900',
+		icon: Vite
+	}
+};
+
+// Herramientas de administración
+export const ADMIN_TOOLS = {
+	WORDPRESS: {
+		name: 'WordPress',
+		class: 'dark:bg-[#21759B60] bg-[#21759B60] dark:text-zinc-100 text-zinc-900',
+		icon: WordPress
+	},
+	VPS: {
+		name: 'VPS',
+		class: 'dark:bg-[#FF6B6B60] bg-[#FF6B6B60] dark:text-zinc-100 text-zinc-900',
+		icon: VPS
+	},
+	CLOUD: {
+		name: 'Cloud',
+		class: 'dark:bg-[#4A90E260] bg-[#4A90E260] dark:text-zinc-100 text-zinc-900',
+		icon: Cloud
+	},
+	VERCEL: {
+		name: 'Vercel',
+		class: 'dark:bg-[#00000060] bg-[#00000060] dark:text-zinc-100 text-zinc-900',
+		icon: Vercel
+	},
+	SHOPIFY: {
+		name: 'Shopify',
+		class: 'dark:bg-[#96bf4860] bg-[#96bf4860] dark:text-zinc-100 text-zinc-900',
+		icon: Shopify
+	}
+};
+
+// Estados de proyectos
+export const PROJECT_STATUS = {
+	COMPLETED: {
+		name: 'Completado',
+		class: 'dark:bg-[#10B98160] bg-[#10B98160] dark:text-zinc-100 text-zinc-900',
+		icon: Check
+	},
+	IN_PROGRESS: {
+		name: 'En Proceso',
+		class: 'dark:bg-[#F59E0B60] bg-[#F59E0B60] dark:text-zinc-100 text-zinc-900',
+		icon: InProgress
 	}
 };
 ---
