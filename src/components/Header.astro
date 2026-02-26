@@ -49,7 +49,7 @@ const navItems = [
 	</nav>
 </header>
 
-<nav class="md:invisible visible fixed bottom-0 left-1/2 -translate-x-1/2 z-50 mb-4 w-[90%] max-w-md rounded-full bg-neutral-200/70 dark:bg-black/50 backdrop-blur-sm shadow-lg mobile-nav">
+<nav class="md:invisible visible fixed bottom-0 left-1/2 -translate-x-1/2 z-50 mb-4 w-[90%] max-w-md rounded-full bg-neutral-200/70 dark:bg-black/50 backdrop-blur-sm shadow-lg mobile-nav" id="mobile-nav">
 	<div class="grid h-full grid-cols-4 font-medium py-2 px-2">
 		{
 			navItems.map((link) => (
@@ -117,6 +117,45 @@ const navItems = [
 		const hash = window.location.hash.slice(1);
 		if (hash) updateNav(hash);
 
+		// --- Hide mobile nav on scroll down, show on scroll up ---
+		const mobileNav = document.getElementById('mobile-nav');
+		let lastScrollY = window.scrollY;
+		let scrollTicking = false;
+
+		const handleScroll = () => {
+			if (!scrollTicking) {
+				requestAnimationFrame(() => {
+					const currentScrollY = window.scrollY;
+					const scrollingDown = currentScrollY > lastScrollY;
+					const nearBottom = window.innerHeight + currentScrollY >= document.documentElement.scrollHeight - 80;
+
+					if (mobileNav) {
+						if (scrollingDown || nearBottom) {
+							mobileNav.classList.add('mobile-nav-hidden');
+						} else {
+							mobileNav.classList.remove('mobile-nav-hidden');
+						}
+					}
+
+					lastScrollY = currentScrollY;
+					scrollTicking = false;
+				});
+				scrollTicking = true;
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll, { passive: true });
+
+		// --- Hide mobile nav when a modal is open ---
+		const modalCheckboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"].hidden.peer');
+
+		const handleModalChange = () => {
+			const anyOpen = Array.from(modalCheckboxes).some((cb) => cb.checked);
+			if (mobileNav) mobileNav.classList.toggle('mobile-nav-hidden', anyOpen);
+		};
+
+		modalCheckboxes.forEach((cb) => cb.addEventListener('change', handleModalChange));
+
 		document.onvisibilitychange = () => {
 			if (document.visibilityState === 'hidden') observer.disconnect();
 		};
@@ -134,6 +173,15 @@ const navItems = [
 		animation: mobile-nav-shadown 1s linear both;
 		animation-timeline: scroll();
 		animation-range: 0 400px;
+		transition:
+			bottom 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 0.35s ease;
+	}
+
+	.mobile-nav.mobile-nav-hidden {
+		bottom: -5rem;
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	/* Estado activo para navegación móvil */
