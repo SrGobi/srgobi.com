@@ -147,7 +147,7 @@ const navItems = [
 		window.addEventListener('scroll', handleScroll, { passive: true });
 
 		// --- Hide mobile nav when a modal is open ---
-		const modalCheckboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"].hidden.peer');
+		const modalCheckboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-modal]');
 
 		const handleModalChange = () => {
 			const anyOpen = Array.from(modalCheckboxes).some((cb) => cb.checked);
