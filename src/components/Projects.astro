@@ -47,7 +47,7 @@ const PROJECTS = [
 		description: `Creación de un CMS personalizado enfocado en la gestión eficiente de archivos e imágenes. Este sistema permite a los administradores subir, editar y organizar archivos multimedia, generando metadatos en formato JSON que vinculan cada elemento con su información correspondiente.\n
 		El CMS cuenta con dos vistas: una para usuarios no técnicos que facilita la visualización y modificación de datos sin necesidad de interactuar con JSON, y otra avanzada para usuarios técnicos que permite editar el JSON directamente. Además, se implementó una funcionalidad en tiempo real utilizando WebSocket, lo que permite monitorear y visualizar cambios en el stock de los elementos.\n
 		Este proyecto no solo optimiza la gestión de contenido, sino que también integra características avanzadas para adaptarse a las necesidades específicas de la tienda.`,
-		link: 'https://github.com/SrGobi',
+		link: '',
 		image: ['/projects/custom_cms.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER],
 		status: PROJECT_STATUS.COMPLETED,
@@ -102,18 +102,28 @@ const PROJECTS = [
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB],
 		status: PROJECT_STATUS.COMPLETED,
 		adminTool: ADMIN_TOOLS.VPS
+	},
+	{
+		title: 'ETTG',
+		description: `El European Think Tanks Group (ETTG) es una red de seis think tanks europeos independientes que colaboran para proporcionar investigación y análisis innovadores y relevantes para las políticas relacionadas con la cooperación internacional de la Unión Europea y el desarrollo sostenible global.`,
+		link: 'https://ettg.eu/',
+		image: ['/projects/ettg.webp'],
+		tags: [],
+		status: PROJECT_STATUS.IN_PROGRESS,
+		adminTool: ADMIN_TOOLS.WORDPRESS,
+		bgColor: '#089C80'
 	}
 ];
 ---
 
 <div class="flex flex-col gap-y-16">
 	{
-		PROJECTS.map(({ image, title, description, tags, link, status, adminTool, history }) => (
+		PROJECTS.map(({ image, title, description, tags, link, status, adminTool, history, bgColor }) => (
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
-						<label for={`image-modal-toggle-${title}`} class="cursor-pointer">
-							<img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image[0]} />
+						<label for={`image-modal-toggle-${title}`} class={`cursor-pointer w-full${bgColor ? ' aspect-video flex items-center justify-center' : ''}`} style={bgColor ? `background-color: ${bgColor}` : ''}>
+							<img alt={title} class={`transition duration-500 ${bgColor ? 'object-contain max-h-full p-6 md:scale-100 md:group-hover:scale-105' : 'object-cover object-top w-full h-full sm:h-full md:scale-110 md:group-hover:scale-105'}`} loading="lazy" src={image[0]} />
 						</label>
 					</div>
 				</div>
@@ -127,26 +137,30 @@ const PROJECTS = [
 						</span>
 					</div>
 					<div class="flex flex-wrap mt-2">
-						<div class="w-full mb-2">
-							<p class="text-xs text-zinc-600 dark:text-zinc-500 mb-1">Tecnologías:</p>
-							<ul class="flex xl:flex-row flex-wrap gap-2">
-								{tags.map((tag) => (
-									<li>
-										<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
-											<tag.icon class="size-4" />
-											{tag.name}
-										</span>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div class="w-full mb-2">
-							<p class="text-xs text-zinc-600 dark:text-zinc-500 mb-1">Administración:</p>
-							<span class={`inline-flex gap-x-2 rounded-full text-xs ${adminTool.class} py-1 px-2`}>
-								<adminTool.icon class="size-4" />
-								{adminTool.name}
-							</span>
-						</div>
+						{tags && tags.length > 0 && (
+							<div class="w-full mb-2">
+								<p class="text-xs text-zinc-600 dark:text-zinc-500 mb-1">Tecnologías:</p>
+								<ul class="flex xl:flex-row flex-wrap gap-2">
+									{tags.map((tag) => (
+										<li>
+											<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
+												<tag.icon class="size-4" />
+												{tag.name}
+											</span>
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+						{adminTool && (
+							<div class="w-full mb-2">
+								<p class="text-xs text-zinc-600 dark:text-zinc-500 mb-1">Administración:</p>
+								<span class={`inline-flex gap-x-2 rounded-full text-xs ${adminTool.class} py-1 px-2`}>
+									<adminTool.icon class="size-4" />
+									{adminTool.name}
+								</span>
+							</div>
+						)}
 						{history && history.length > 0 && (
 							<div class="w-full mb-2">
 								<label for={`history-modal-toggle-${title}`} class="inline-flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 cursor-pointer transition">
@@ -203,10 +217,20 @@ const PROJECTS = [
 							</Modal>
 						)}
 						<footer class="flex gap-x-4 items-end justify-start mt-4">
-							<LinkButton href={link}>
-								<Link2 class="size-4 mr-1" />
-								Ir al sitio web
-							</LinkButton>
+							{link ? (
+								<LinkButton href={link}>
+									<Link2 class="size-4 mr-1" />
+									Ir al sitio web
+								</LinkButton>
+							) : (
+								<span class="inline-flex items-center gap-x-2 rounded-full text-xs bg-zinc-800 text-zinc-400 py-1 px-3 border border-zinc-700">
+									<svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+										<path d="M7 11V7a5 5 0 0 1 10 0v4" />
+									</svg>
+									Enlace privado
+								</span>
+							)}
 						</footer>
 					</div>
 				</div>
