@@ -49,13 +49,13 @@ const navItems = [
 	</nav>
 </header>
 
-<div class="md:invisible visible fixed bottom-0 left-0 z-50 w-full h-16 border-t border-zinc-500 bg-neutral-200/70 dark:bg-black/50 backdrop-blur-sm">
-	<div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+<div class="md:invisible visible fixed bottom-0 left-1/2 -translate-x-1/2 z-50 mb-4 w-[90%] max-w-md rounded-full bg-neutral-200/70 dark:bg-black/50 backdrop-blur-sm shadow-lg">
+	<div class="grid h-full grid-cols-4 font-medium py-2">
 		{
 			navItems.map((link) => (
-				<a href={link.url} class="inline-flex flex-col items-center justify-center border-zinc-200 border-x hover:bg-white/10 dark:hover:bg-zinc-800 group dark:border-zinc-600" aria-label={link.label}>
+				<a href={link.url} class="inline-flex flex-col items-center justify-center px-2 hover:bg-white/10 dark:hover:bg-zinc-800 group rounded-full transition" aria-label={link.label}>
 					<link.icon size={22} class="text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" />
-					<span class="text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">{link.title}</span>
+					<span class="text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">{link.title}</span>
 				</a>
 			))
 		}
