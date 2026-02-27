@@ -181,9 +181,6 @@ const PROJECTS = [
 											<path d="M7 17 17 7" />
 										</svg>
 									</label>
-									{/* Modal para la imagen ampliada */}
-									<ImageModal id={`image-modal-toggle-${title}`} imageSrc={image[0]} imageAlt={`Imagen ampliada de ${title}`} bgColor={bgColor} />
-
 									{/* Modal para la descripción completa */}
 									<Modal id={`modal-toggle-${title}`} title={`Detalles de ${title}`} showFooter={true}>
 										<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
@@ -192,6 +189,8 @@ const PROJECTS = [
 							) : (
 								<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
 							)}
+							{/* Modal de imagen: siempre presente porque el trigger (la imagen izquierda) siempre se renderiza */}
+							<ImageModal id={`image-modal-toggle-${title}`} imageSrc={image[0]} imageAlt={`Imagen ampliada de ${title}`} bgColor={bgColor} />
 						</div>
 						{history && history.length > 0 && (
 							<Modal id={`history-modal-toggle-${title}`} title={`📋 Histórico de Cambios - ${title}`} maxWidth="3xl" showFooter={true}>
@@ -243,6 +242,7 @@ const PROJECTS = [
 		const modalIds = [
 			'modal-toggle-AgroTraz - Gestion de Fabricas',
 			'modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
+			'modal-toggle-ETTG',
 			'modal-toggle-CMS - Incantatem',
 			'modal-toggle-ESP CUSTOMS LLC',
 			'modal-toggle-AuraFut - Ecommerce',
@@ -251,6 +251,7 @@ const PROJECTS = [
 			'modal-toggle-LibertadCripto - ComuniDAO',
 			'image-modal-toggle-AgroTraz - Gestion de Fabricas',
 			'image-modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
+			'image-modal-toggle-ETTG',
 			'image-modal-toggle-CMS - Incantatem',
 			'image-modal-toggle-ESP CUSTOMS LLC',
 			'image-modal-toggle-AuraFut - Ecommerce',
@@ -265,9 +266,9 @@ const PROJECTS = [
 			if (modal) {
 				modal.addEventListener('change', () => {
 					if ((modal as HTMLInputElement).checked) {
-						document.body.classList.add('overflow-hidden');
+						document.body.style.overflow = 'hidden';
 					} else {
-						document.body.classList.remove('overflow-hidden');
+						document.body.style.overflow = '';
 					}
 				});
 			}
