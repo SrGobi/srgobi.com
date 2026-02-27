@@ -6,14 +6,20 @@ interface Props {
 	imageSrc: string;
 	imageAlt: string;
 	bgColor?: string;
+	animation?: 'fade' | 'scale' | 'slide' | 'zoom' | 'bounce';
+	from?: 'top' | 'bottom' | 'left' | 'right';
+	duration?: number;
+	timing?: string;
 }
 
-const { id, imageSrc, imageAlt, bgColor } = Astro.props;
+const { id, imageSrc, imageAlt, bgColor, animation = 'zoom', from = 'top', duration = 350, timing = 'spring' } = Astro.props;
+
+const easing = timing === 'spring' ? 'cubic-bezier(0.16,1,0.3,1)' : timing;
 ---
 
-<input type="checkbox" id={id} class="hidden peer/image" data-modal />
-<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked/image:flex hidden">
-	<div class="relative p-4 w-full max-w-max">
+<input type="checkbox" id={id} class="hidden peer/image" />
+<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl peer-checked/image:flex hidden" style={`--modal-duration:${duration}ms; --modal-timing:${easing}`} data-modal-overlay>
+	<div class="relative p-4 w-full max-w-max" data-modal-content data-animation={animation} data-from={from}>
 		<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
 			<label for={id} class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1 cursor-pointer z-10">
 				<X class="size-4 text-zinc-300 dark:text-zinc-100" />
