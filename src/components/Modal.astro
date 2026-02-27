@@ -8,9 +8,13 @@ interface Props {
 	showHeader?: boolean;
 	showFooter?: boolean;
 	footerContent?: string;
+	animation?: 'fade' | 'scale' | 'slide' | 'zoom' | 'bounce';
+	from?: 'top' | 'bottom' | 'left' | 'right';
+	duration?: number;
+	timing?: string;
 }
 
-const { id, title, maxWidth = '2xl', showHeader = true, showFooter = false, footerContent = 'Cerrar' } = Astro.props;
+const { id, title, maxWidth = '2xl', showHeader = true, showFooter = false, footerContent = 'Cerrar', animation = 'scale', from = 'top', duration = 350, timing = 'spring' } = Astro.props;
 
 const maxWidthClasses = {
 	sm: 'max-w-sm',
@@ -21,11 +25,13 @@ const maxWidthClasses = {
 	'3xl': 'max-w-3xl',
 	max: 'max-w-max'
 };
+
+const easing = timing === 'spring' ? 'cubic-bezier(0.16,1,0.3,1)' : timing;
 ---
 
-<input type="checkbox" id={id} class="hidden peer/modal" data-modal />
-<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition peer-checked/modal:flex hidden">
-	<div class={`relative p-4 w-full ${maxWidthClasses[maxWidth]} max-h-full`}>
+<input type="checkbox" id={id} class="hidden peer/modal" />
+<div class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl peer-checked/modal:flex hidden" style={`--modal-duration:${duration}ms; --modal-timing:${easing}`} data-modal-overlay>
+	<div class={`relative p-4 w-full ${maxWidthClasses[maxWidth]} max-h-full`} data-modal-content data-animation={animation} data-from={from}>
 		<div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow-sm">
 			{
 				showHeader && (
