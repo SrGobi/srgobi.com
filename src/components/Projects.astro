@@ -15,7 +15,9 @@ const PROJECTS = [
 		image: ['/projects/gesfap.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER, TAGS.MARIADB],
 		status: PROJECT_STATUS.IN_PROGRESS,
-		adminTool: ADMIN_TOOLS.VPS
+		adminTool: ADMIN_TOOLS.VPS,
+		modalAnimation: { animation: 'bounce' as const, duration: 700 },
+		imageAnimation: { animation: 'slide' as const, from: 'top' as const, duration: 450 }
 	},
 	{
 		title: 'Goblin Ajedrez - Juego de ajedrez online',
@@ -29,6 +31,8 @@ const PROJECTS = [
 		tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE],
 		status: PROJECT_STATUS.IN_PROGRESS,
 		adminTool: ADMIN_TOOLS.VPS,
+		modalAnimation: { animation: 'slide' as const, from: 'left' as const, duration: 500 },
+		imageAnimation: { animation: 'zoom' as const, duration: 550 },
 		history: [
 			{
 				date: '2024-01-15',
@@ -50,7 +54,9 @@ const PROJECTS = [
 		tags: [],
 		status: PROJECT_STATUS.IN_PROGRESS,
 		adminTool: ADMIN_TOOLS.WORDPRESS,
-		bgColor: '#089C80'
+		bgColor: '#089C80',
+		modalAnimation: { animation: 'zoom' as const, duration: 400 },
+		imageAnimation: { animation: 'bounce' as const, duration: 700 }
 	},
 	{
 		title: 'CMS - Incantatem',
@@ -61,7 +67,9 @@ const PROJECTS = [
 		image: ['/projects/custom_cms.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.TAILWIND, TAGS.DOCKER],
 		status: PROJECT_STATUS.COMPLETED,
-		adminTool: ADMIN_TOOLS.VPS
+		adminTool: ADMIN_TOOLS.VPS,
+		modalAnimation: { animation: 'slide' as const, from: 'top' as const, duration: 450 },
+		imageAnimation: { animation: 'fade' as const, duration: 600 }
 	},
 	{
 		title: 'ESP CUSTOMS LLC',
@@ -71,7 +79,8 @@ const PROJECTS = [
 		image: ['/projects/espcustoms.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.ANGULAR, TAGS.BOOTSTRAP, TAGS.MONGODB],
 		status: PROJECT_STATUS.COMPLETED,
-		adminTool: ADMIN_TOOLS.CLOUD
+		adminTool: ADMIN_TOOLS.CLOUD,
+		imageAnimation: { animation: 'scale' as const, duration: 350 }
 	},
 	{
 		title: 'AuraFut - Ecommerce',
@@ -83,7 +92,9 @@ const PROJECTS = [
 		image: ['/projects/aurafut.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB],
 		status: PROJECT_STATUS.COMPLETED,
-		adminTool: ADMIN_TOOLS.SHOPIFY
+		adminTool: ADMIN_TOOLS.SHOPIFY,
+		modalAnimation: { animation: 'fade' as const, duration: 500 },
+		imageAnimation: { animation: 'slide' as const, from: 'right' as const, duration: 450 }
 	},
 	{
 		title: 'Canvacard - NPM',
@@ -93,7 +104,9 @@ const PROJECTS = [
 		image: ['/projects/canvacard.webp'],
 		tags: [TAGS.JAVASCRIPT, TAGS.TYPESCRIPT],
 		status: PROJECT_STATUS.COMPLETED,
-		adminTool: ADMIN_TOOLS.VERCEL
+		adminTool: ADMIN_TOOLS.VERCEL,
+		modalAnimation: { animation: 'scale' as const, duration: 400 },
+		imageAnimation: { animation: 'slide' as const, from: 'left' as const, duration: 400 }
 	},
 	{
 		title: 'App Discord Peereira7',
@@ -102,7 +115,8 @@ const PROJECTS = [
 		image: ['/projects/Servidor_Peereira7.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB],
 		status: PROJECT_STATUS.COMPLETED,
-		adminTool: ADMIN_TOOLS.VPS
+		adminTool: ADMIN_TOOLS.VPS,
+		imageAnimation: { animation: 'zoom' as const, duration: 300 }
 	},
 	{
 		title: 'LibertadCripto - ComuniDAO',
@@ -111,14 +125,15 @@ const PROJECTS = [
 		image: ['/projects/Servidor_LibertadCripto.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.DISCORD, TAGS.MONGODB],
 		status: PROJECT_STATUS.COMPLETED,
-		adminTool: ADMIN_TOOLS.VPS
+		adminTool: ADMIN_TOOLS.VPS,
+		imageAnimation: { animation: 'slide' as const, from: 'bottom' as const, duration: 500 }
 	}
 ];
 ---
 
 <div class="flex flex-col gap-y-16">
 	{
-		PROJECTS.map(({ image, title, description, tags, link, status, adminTool, history, bgColor }) => (
+		PROJECTS.map(({ image, title, description, tags, link, status, adminTool, history, bgColor, modalAnimation, imageAnimation }) => (
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
@@ -182,7 +197,7 @@ const PROJECTS = [
 										</svg>
 									</label>
 									{/* Modal para la descripción completa */}
-									<Modal id={`modal-toggle-${title}`} title={`Detalles de ${title}`} showFooter={true} animation="slide" from="bottom" duration={500}>
+									<Modal id={`modal-toggle-${title}`} title={`Detalles de ${title}`} showFooter={true} animation={modalAnimation?.animation ?? 'scale'} from={modalAnimation?.from ?? 'top'} duration={modalAnimation?.duration ?? 350}>
 										<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
 									</Modal>
 								</>
@@ -190,10 +205,10 @@ const PROJECTS = [
 								<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
 							)}
 							{/* Modal de imagen: siempre presente porque el trigger (la imagen izquierda) siempre se renderiza */}
-							<ImageModal id={`image-modal-toggle-${title}`} imageSrc={image[0]} imageAlt={`Imagen ampliada de ${title}`} bgColor={bgColor} />
+							<ImageModal id={`image-modal-toggle-${title}`} imageSrc={image[0]} imageAlt={`Imagen ampliada de ${title}`} bgColor={bgColor} animation={imageAnimation?.animation ?? 'zoom'} from={imageAnimation?.from ?? 'top'} duration={imageAnimation?.duration ?? 350} />
 						</div>
 						{history && history.length > 0 && (
-							<Modal id={`history-modal-toggle-${title}`} title={`📋 Histórico de Cambios - ${title}`} maxWidth="3xl" showFooter={true}>
+							<Modal id={`history-modal-toggle-${title}`} title={`📋 Histórico de Cambios - ${title}`} maxWidth="3xl" showFooter={true} animation="slide" from="right" duration={400}>
 								<div class="space-y-4">
 									{history.map((entry, index) => (
 										<div class="border dark:border-white/10 border-zinc-300 rounded-lg p-4">
