@@ -2,6 +2,200 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+/* ============================================
+   MODAL / IMAGE-MODAL ANIMATIONS — pure CSS
+   Entrada : @starting-style + transition
+   Salida  : transition-behavior: allow-discrete
+   ============================================ */
+
+/* Bounce necesita @keyframes (animación multi-paso) */
+@keyframes modal-bounce-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	70% {
+		transform: scale(0.95);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/* ---- Overlay ---- */
+[data-modal-overlay] {
+	opacity: 0;
+	transition:
+		opacity var(--modal-duration, 300ms) var(--modal-timing, cubic-bezier(0.16, 1, 0.3, 1)),
+		display var(--modal-duration, 300ms) allow-discrete;
+}
+
+.peer\/modal:checked ~ [data-modal-overlay],
+.peer\/image:checked ~ [data-modal-overlay] {
+	opacity: 1;
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay],
+	.peer\/image:checked ~ [data-modal-overlay] {
+		opacity: 0;
+	}
+}
+
+/* ---- Contenido: transición base ---- */
+[data-modal-content] {
+	transition:
+		opacity var(--modal-duration, 350ms) var(--modal-timing, cubic-bezier(0.16, 1, 0.3, 1)),
+		transform var(--modal-duration, 350ms) var(--modal-timing, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+/* ---- fade ---- */
+[data-modal-content][data-animation='fade'] {
+	opacity: 0;
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='fade'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='fade'] {
+	opacity: 1;
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='fade'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='fade'] {
+		opacity: 0;
+	}
+}
+
+/* ---- scale ---- */
+[data-modal-content][data-animation='scale'] {
+	opacity: 0;
+	transform: scale(0.9);
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='scale'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='scale'] {
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='scale'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='scale'] {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+}
+
+/* ---- zoom ---- */
+[data-modal-content][data-animation='zoom'] {
+	opacity: 0;
+	transform: scale(0.75);
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='zoom'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='zoom'] {
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='zoom'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='zoom'] {
+		opacity: 0;
+		transform: scale(0.75);
+	}
+}
+
+/* ---- bounce (keyframe multi-paso) ---- */
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='bounce'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='bounce'] {
+	animation: modal-bounce-in var(--modal-duration, 500ms) var(--modal-timing, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+/* ---- slide: top ---- */
+[data-modal-content][data-animation='slide'][data-from='top'] {
+	opacity: 0;
+	transform: translateY(-10%);
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='top'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='top'] {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='top'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='top'] {
+		opacity: 0;
+		transform: translateY(-10%);
+	}
+}
+
+/* ---- slide: bottom ---- */
+[data-modal-content][data-animation='slide'][data-from='bottom'] {
+	opacity: 0;
+	transform: translateY(10%);
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='bottom'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='bottom'] {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='bottom'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='bottom'] {
+		opacity: 0;
+		transform: translateY(10%);
+	}
+}
+
+/* ---- slide: left ---- */
+[data-modal-content][data-animation='slide'][data-from='left'] {
+	opacity: 0;
+	transform: translateX(-10%);
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='left'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='left'] {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='left'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='left'] {
+		opacity: 0;
+		transform: translateX(-10%);
+	}
+}
+
+/* ---- slide: right ---- */
+[data-modal-content][data-animation='slide'][data-from='right'] {
+	opacity: 0;
+	transform: translateX(10%);
+}
+
+.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='right'],
+.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='right'] {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+@starting-style {
+	.peer\/modal:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='right'],
+	.peer\/image:checked ~ [data-modal-overlay] [data-modal-content][data-animation='slide'][data-from='right'] {
+		opacity: 0;
+		transform: translateX(10%);
+	}
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
