@@ -251,37 +251,11 @@ const PROJECTS = [
 </div>
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		const modalIds = [
-			'modal-toggle-AgroTraz - Gestion de Fabricas',
-			'modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
-			'modal-toggle-ETTG',
-			'modal-toggle-CMS - Incantatem',
-			'modal-toggle-ESP CUSTOMS LLC',
-			'modal-toggle-AuraFut - Ecommerce',
-			'modal-toggle-Canvacard - NPM',
-			'modal-toggle-App Discord Peereira7',
-			'modal-toggle-LibertadCripto - ComuniDAO',
-			'image-modal-toggle-AgroTraz - Gestion de Fabricas',
-			'image-modal-toggle-Goblin Ajedrez - Juego de ajedrez online',
-			'image-modal-toggle-ETTG',
-			'image-modal-toggle-CMS - Incantatem',
-			'image-modal-toggle-ESP CUSTOMS LLC',
-			'image-modal-toggle-AuraFut - Ecommerce',
-			'image-modal-toggle-Canvacard - NPM',
-			'image-modal-toggle-App Discord Peereira7',
-			'image-modal-toggle-LibertadCripto - ComuniDAO',
-			'history-modal-toggle-Goblin Ajedrez - Juego de ajedrez online'
-		];
-
-		modalIds.forEach((id) => {
-			const modal = document.getElementById(id);
-			if (modal) {
-				modal.addEventListener('change', () => {
-					if ((modal as HTMLInputElement).checked) {
-						document.body.style.overflow = 'hidden';
-					} else {
-						document.body.style.overflow = '';
-					}
+		document.querySelectorAll<HTMLInputElement>('[data-modal-overlay]').forEach((overlay) => {
+			const input = overlay.previousElementSibling as HTMLInputElement | null;
+			if (input?.type === 'checkbox') {
+				input.addEventListener('change', () => {
+					document.body.style.overflow = input.checked ? 'hidden' : '';
 				});
 			}
 		});
