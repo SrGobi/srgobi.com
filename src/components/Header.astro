@@ -1,6 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-import { Briefcase, Code2, User, Mail } from '@lucide/astro';
+import { Briefcase, CodeXml, User, Mail } from '@lucide/astro';
 const navItems = [
 	{
 		title: 'Experiencia',
@@ -12,7 +12,7 @@ const navItems = [
 		title: 'Proyectos',
 		label: 'proyectos',
 		url: '/#proyectos',
-		icon: Code2
+		icon: CodeXml
 	},
 	{
 		title: 'Sobre mí',
@@ -29,7 +29,7 @@ const navItems = [
 ];
 ---
 
-<header class="md:visible invisible fixed top-0 z-20 flex items-center justify-center w-full mx-auto mt-2">
+<header id="desktop-header" class="md:visible invisible fixed top-0 z-20 flex items-center justify-center w-full mx-auto mt-2">
 	<nav
 		class={`
 	  w-2/4 h-full
@@ -146,15 +146,21 @@ const navItems = [
 
 		window.addEventListener('scroll', handleScroll, { passive: true });
 
-		// --- Hide mobile nav when a modal is open ---
-		const modalCheckboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-modal]');
+		// --- Hide both navs when a modal is open ---
+		const desktopHeader = document.getElementById('desktop-header');
 
-		const handleModalChange = () => {
-			const anyOpen = Array.from(modalCheckboxes).some((cb) => cb.checked);
+		const updateHeadersForModals = () => {
+			const anyOpen = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-modal]')).some((cb) => cb.checked);
 			if (mobileNav) mobileNav.classList.toggle('mobile-nav-hidden', anyOpen);
+			if (desktopHeader) desktopHeader.classList.toggle('header-hidden', anyOpen);
 		};
 
-		modalCheckboxes.forEach((cb) => cb.addEventListener('change', handleModalChange));
+		document.addEventListener('change', (e) => {
+			const target = e.target as HTMLInputElement;
+			if (target.type === 'checkbox' && target.hasAttribute('data-modal')) {
+				updateHeadersForModals();
+			}
+		});
 
 		document.onvisibilitychange = () => {
 			if (document.visibilityState === 'hidden') observer.disconnect();
@@ -163,6 +169,20 @@ const navItems = [
 </script>
 
 <style>
+	header {
+		animation: header-slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		transition:
+			transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 0.35s ease;
+	}
+
+	header.header-hidden {
+		animation: none;
+		transform: translateY(-5rem);
+		opacity: 0;
+		pointer-events: none;
+	}
+
 	nav {
 		animation: nav-shadown 1s linear both;
 		animation-timeline: scroll();
@@ -206,6 +226,17 @@ const navItems = [
 
 	.mobile-nav-item.active .nav-icon {
 		transform: scale(1.1);
+	}
+
+	@keyframes header-slide-in {
+		from {
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
 	}
 
 	@keyframes nav-shadown {
