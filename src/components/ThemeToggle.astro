@@ -114,7 +114,7 @@ const THEMES = [
 			});
 
 			document.querySelectorAll('.themes-menu-option').forEach((element) => {
-				element.addEventListener('click', (e) => {
+				element.addEventListener('click', () => {
 					// Buscar el span que contiene el texto del tema
 					const themeSpan = element.querySelector('span');
 					const themeName = themeSpan ? themeSpan.innerText.toLowerCase().trim() : '';
