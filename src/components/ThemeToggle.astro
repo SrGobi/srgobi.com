@@ -1,6 +1,12 @@
 ---
 import { Sun, Moon, Monitor } from '@lucide/astro';
 
+interface Props {
+	align?: 'left' | 'right';
+}
+
+const { align = 'left' } = Astro.props;
+
 const THEMES = [
 	{ name: 'Claro', value: 'light', icon: Sun },
 	{ name: 'Oscuro', value: 'dark', icon: Moon },
@@ -15,7 +21,7 @@ const THEMES = [
 		<Moon id="dark" class="theme-toggle-icon absolute size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
 		<Monitor id="system" class="theme-toggle-icon absolute size-5 transition-all stroke-zinc-800 dark:stroke-zinc-100" />
 	</button>
-	<div transition:persist id="themes-menu" class="absolute hidden top-8 left-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md">
+	<div transition:persist id="themes-menu" class={`absolute hidden top-8 ${align === 'right' ? 'right-0' : 'left-0'} text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-neutral-200/95 dark:bg-black/95 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md`}>
 		<ul>
 			{
 				THEMES.map((theme) => (
