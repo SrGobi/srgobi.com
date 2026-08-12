@@ -204,3 +204,70 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
+
+/* ============================================
+   EXPERIENCE VARIANTS � entry animations
+   Stagger fade-in para cards y tabpanels.
+   Respeta prefers-reduced-motion.
+   ============================================ */
+
+@keyframes exp-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+[data-exp-item] {
+	animation: exp-fade-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+	animation-delay: calc(var(--exp-i, 0) * 60ms);
+}
+
+[data-exp-panel] {
+	animation: exp-fade-in 350ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Tabs: indicador activo con borde animado */
+[data-exp-tab-active] {
+	position: absolute;
+	inset-inline: 0;
+	bottom: -1px;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #5865f2, transparent);
+	animation: exp-fade-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Hover-lift mejorado para cards de experiencia */
+.exp-card-hover {
+	transition:
+		transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+		border-color 250ms ease,
+		box-shadow 250ms ease;
+}
+.exp-card-hover:hover {
+	transform: translateY(-2px);
+	border-color: color-mix(in oklab, #5865f2 50%, transparent);
+	box-shadow:
+		0 12px 32px -12px color-mix(in oklab, #5865f2 30%, transparent),
+		0 0 0 1px color-mix(in oklab, #5865f2 15%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-exp-item],
+	[data-exp-panel],
+	[data-exp-tab-active] {
+		animation: none !important;
+	}
+	.exp-card-hover {
+		transition: none !important;
+	}
+	.exp-card-hover:hover {
+		transform: none !important;
+	}
+}
+
+/* fin experience-animations */

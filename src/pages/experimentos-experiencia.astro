@@ -1,0 +1,140 @@
+---
+import '../styles/global.css';
+import Layout from '@/layouts/Layout.astro';
+import SectionContainer from '@/components/SectionContainer.astro';
+import ExperienceTimeline from '@/components/experience/ExperienceTimeline.astro';
+import ExperienceCards from '@/components/experience/ExperienceCards.astro';
+import ExperienceBento from '@/components/experience/ExperienceBento.astro';
+import ExperienceAccordion from '@/components/experience/ExperienceAccordion.astro';
+import ExperienceTabs from '@/components/experience/ExperienceTabs.astro';
+import { BriefcaseBusiness, Sparkles, LayoutGrid, Layers, Rows3, PanelsTopLeft, ArrowLeft } from '@lucide/astro';
+
+const variants = [
+	{
+		id: 'v1',
+		name: 'Timeline',
+		desc: 'Línea vertical continua con cards glass. Lectura cronológica, hover-lift, duración calculada.',
+		icon: Rows3,
+		pros: ['Lectura descendente clara', 'Jerarquía visual fuerte', 'Espaciado respirado'],
+		cons: ['Ocupa mucho vertical', 'Menos denso en pantallas anchas'],
+		Comp: ExperienceTimeline
+	},
+	{
+		id: 'v2',
+		name: 'Cards grid',
+		desc: 'Grid responsive 2/3 columnas con cards asimétricas. Header de empresa con icono contextual.',
+		icon: LayoutGrid,
+		pros: ['Muy escaneable', 'Aprovecha pantallas anchas', 'Halos de color en hover'],
+		cons: ['Pierde sensación cronológica', 'Puede verse "cuadrado"'],
+		Comp: ExperienceCards
+	},
+	{
+		id: 'v3',
+		name: 'Bento',
+		desc: 'Asimetría controlada: empresa destacada 2x2 con gradiente, resto 1x1. Look "portafolio moderno".',
+		icon: Layers,
+		pros: ['Visualmente llamativo', 'Jerarquía clara', 'Destaca un proyecto'],
+		cons: ['Solo luce con varias empresas', 'Puede verse denso en mobile'],
+		Comp: ExperienceBento
+	},
+	{
+		id: 'v4',
+		name: 'Accordion',
+		desc: '<details> CSS-only con ribbon lateral, animación de altura y preview con duración y nº proyectos.',
+		icon: PanelsTopLeft,
+		pros: ['Sin ruido inicial', 'Escala muy bien', 'Accesible por defecto'],
+		cons: ['Click extra para ver contenido', 'Menos "vistoso"'],
+		Comp: ExperienceAccordion
+	},
+	{
+		id: 'v5',
+		name: 'Tabs',
+		desc: 'Tabs con indicador animado y duración visible. Panel activo con animación de entrada.',
+		icon: Sparkles,
+		pros: ['Comparación rápida entre empresas', 'Interactivo', 'Ahorra scroll'],
+		cons: ['Más clicks', 'No todo se ve a la vez'],
+		Comp: ExperienceTabs
+	}
+];
+---
+
+<Layout title="Experimentos — Variantes de Experiencia" description="Comparación de 5 variantes UI/UX para la sección de experiencia del portfolio.">
+	<main class="px-4 z-10">
+		<SectionContainer class="py-16 md:py-24">
+			<a href="/" class="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:underline">
+				<ArrowLeft class="size-4" />
+				Volver al portfolio
+			</a>
+			<h1 class="mt-4 text-3xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-3">
+				<BriefcaseBusiness class="size-8 md:size-10 text-blue-600" />
+				Variantes de Experiencia
+			</h1>
+			<p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-2xl text-base md:text-lg">
+				5 propuestas UI/UX para la sección de experiencia laboral. Todas usan la misma fuente de datos (<code class="text-xs px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-white/10">src/data/experience.ts</code>) y comparten paleta, sub-componentes y animaciones.
+			</p>
+
+			{/* índice rápido */}
+			<nav class="mt-8 flex flex-wrap gap-2" aria-label="Índice de variantes">
+				{
+					variants.map(({ id, name }) => (
+						<a href={`#${id}`} class="inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] px-3 py-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:border-blue-600/40 hover:text-blue-600 transition">
+							<span class="font-mono text-[10px] text-zinc-400">{id}</span>
+							{name}
+						</a>
+					))
+				}
+			</nav>
+		</SectionContainer>
+
+		<div class="space-y-24 pb-24">
+			{
+				variants.map(({ id, name, desc, icon: Icon, pros, cons, Comp }, idx) => (
+					<SectionContainer id={id}>
+						<header class="mb-6 flex flex-wrap items-start justify-between gap-4 border-b border-zinc-200 dark:border-white/10 pb-4">
+							<div class="flex items-start gap-3">
+								<span class="grid place-items-center size-10 shrink-0 rounded-xl bg-blue-600/10 text-blue-600">
+									<Icon class="size-5" />
+								</span>
+								<div>
+									<h2 class="text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-zinc-100 flex items-baseline gap-2">
+										{name}
+										<span class="text-xs font-mono text-zinc-400">v{idx + 1}</span>
+									</h2>
+									<p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl">{desc}</p>
+								</div>
+							</div>
+							<a href={`#top`} class="text-xs text-zinc-400 hover:text-blue-600 transition">
+								↑ Arriba
+							</a>
+						</header>
+
+						{/* pros / cons */}
+						<details class="mb-6 rounded-lg border border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-white/[0.02] open:bg-zinc-50 dark:open:bg-white/[0.04] transition">
+							<summary class="cursor-pointer select-none p-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 [&::-webkit-details-marker]:hidden">Ver pros y contras</summary>
+							<div class="grid gap-4 p-4 pt-0 sm:grid-cols-2 text-sm">
+								<div>
+									<h3 class="font-semibold text-emerald-600 dark:text-emerald-400 mb-2">✓ Pros</h3>
+									<ul class="space-y-1 text-zinc-600 dark:text-zinc-400">
+										{pros.map((p) => (
+											<li>· {p}</li>
+										))}
+									</ul>
+								</div>
+								<div>
+									<h3 class="font-semibold text-amber-600 dark:text-amber-400 mb-2">✗ Contras</h3>
+									<ul class="space-y-1 text-zinc-600 dark:text-zinc-400">
+										{cons.map((c) => (
+											<li>· {c}</li>
+										))}
+									</ul>
+								</div>
+							</div>
+						</details>
+
+						<Comp />
+					</SectionContainer>
+				))
+			}
+		</div>
+	</main>
+</Layout>

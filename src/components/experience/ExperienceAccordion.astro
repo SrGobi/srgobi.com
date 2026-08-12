@@ -1,0 +1,81 @@
+---
+// Variante 4 — Accordion CSS-only con <details>.
+// Cada empresa es un panel colapsable. Ribbon azul en el borde izquierdo cuando está abierto.
+// Animación de altura con interpolate-size (Chrome 129+) + fallback con transition.
+import { EXPERIENCE } from '../../data/experience';
+import { Briefcase, Building2, ChevronDown, FolderGit2 } from '@lucide/astro';
+import { computeDuration } from '../../lib/dates';
+import CompanyHeader from './CompanyHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<div class="mt-14 space-y-12">
+	{
+		EXPERIENCE.map((entry) => {
+			const entryDuration = computeDuration(entry.date.split('–')[0].trim(), entry.date.split('–')[1]?.trim() ?? '');
+			return (
+				<div>
+					<header class="mb-6 flex flex-wrap items-center gap-3">
+						<span class="grid place-items-center size-10 rounded-xl bg-blue-600/10 text-blue-600">
+							<Briefcase class="size-5" />
+						</span>
+						<div>
+							<h3 class="text-xl md:text-2xl font-bold text-zinc-800 dark:text-zinc-100 leading-tight">{entry.title}</h3>
+							<p class="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
+								<time>{entry.date}</time>
+								<span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400">{entryDuration}</span>
+							</p>
+						</div>
+					</header>
+					<p class="text-sm md:text-base text-zinc-700 dark:text-zinc-300 max-w-3xl mb-6">{entry.description}</p>
+
+					{entry.companies && entry.companies.length > 0 && (
+						<ul class="space-y-3">
+							{entry.companies.map((company, ci) => {
+								const duration = computeDuration(company.date.split('–')[0].trim(), company.date.split('–')[1]?.trim() ?? '');
+								const projectCount = company.projects?.length ?? 0;
+								return (
+									<li data-exp-item style={`--exp-i:${ci}`}>
+										<details class="group relative overflow-hidden rounded-xl border border-zinc-200 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] backdrop-blur-sm transition-all duration-300 open:shadow-lg open:shadow-blue-600/5 open:border-blue-600/30 exp-card-hover">
+											{/* ribbon lateral */}
+											<span class="pointer-events-none absolute left-0 top-0 bottom-0 w-1 bg-blue-600 origin-top scale-y-0 transition-transform duration-300 group-open:scale-y-100" />
+
+											<summary class="flex cursor-pointer list-none items-center gap-3 p-4 md:p-5 select-none [&::-webkit-details-marker]:hidden">
+												<CompanyHeader title={company.title} date={company.date} duration={duration} icon={Building2} />
+												{projectCount > 0 && (
+													<span class="ml-2 hidden sm:inline-flex shrink-0 items-center gap-1 rounded-full bg-zinc-100 dark:bg-white/5 px-2 py-1 text-[11px] font-medium text-zinc-600 dark:text-zinc-300">
+														<FolderGit2 class="size-3" />
+														{projectCount} {projectCount === 1 ? 'proyecto' : 'proyectos'}
+													</span>
+												)}
+												<ChevronDown class="ml-auto size-5 shrink-0 text-zinc-400 transition-transform duration-300 group-open:rotate-180 group-open:text-blue-600" />
+											</summary>
+
+											<div class="grid grid-rows-[0fr] open:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out">
+												<div class="overflow-hidden">
+													<div class="border-t border-zinc-200/80 dark:border-white/10 p-4 md:p-6">
+														<p class="text-sm text-zinc-700 dark:text-zinc-300 mb-5">{company.description}</p>
+
+														{company.projects && company.projects.length > 0 && (
+															<ul class="grid gap-3 sm:grid-cols-2">
+																{company.projects.map((project) => (
+																	<li>
+																		<ProjectCard title={project.title} stack={project.stack} description={project.description} tags={project.tags} variant="inset" />
+																	</li>
+																))}
+															</ul>
+														)}
+													</div>
+												</div>
+											</div>
+										</details>
+									</li>
+								);
+							})}
+						</ul>
+					)}
+				</div>
+			);
+		})
+	}
+</div>

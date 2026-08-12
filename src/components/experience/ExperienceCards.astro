@@ -1,0 +1,78 @@
+---
+// Variante 2 — Grid de cards. La primera card (autónomo) ocupa 2 cols, el resto 1 col.
+// Halo azul en hover + chip de duración + header de empresa con icono contextual.
+import { EXPERIENCE } from '../../data/experience';
+import { Briefcase, Building2, Code2, Newspaper, ShoppingBag, Database, Cpu } from '@lucide/astro';
+import { computeDuration } from '../../lib/dates';
+import CompanyHeader from './CompanyHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+
+// Mapeo título → icono (heurística, no se inventa info)
+const iconForCompany = (title: string): { Icon: any; bg: string; color: string } => {
+	const t = title.toLowerCase();
+	if (t.includes('wordpress') || t.includes('incantatem') || t.includes('cms')) return { Icon: Newspaper, bg: 'bg-[#21759B]/10', color: 'text-[#21759B]' };
+	if (t.includes('shopify') || t.includes('aurafut')) return { Icon: ShoppingBag, bg: 'bg-emerald-500/10', color: 'text-emerald-600 dark:text-emerald-400' };
+	if (t.includes('zima')) return { Icon: Cpu, bg: 'bg-violet-500/10', color: 'text-violet-600 dark:text-violet-400' };
+	if (t.includes('agrotraz') || t.includes('weasel')) return { Icon: Database, bg: 'bg-amber-500/10', color: 'text-amber-600 dark:text-amber-400' };
+	if (t.includes('goblin') || t.includes('ajedrez')) return { Icon: Code2, bg: 'bg-sky-500/10', color: 'text-sky-600 dark:text-sky-400' };
+	return { Icon: Building2, bg: 'bg-blue-600/10', color: 'text-blue-600' };
+};
+---
+
+<div class="mt-14 space-y-12">
+	{
+		EXPERIENCE.map((entry) => {
+			const entryDuration = computeDuration(entry.date.split('–')[0].trim(), entry.date.split('–')[1]?.trim() ?? '');
+			return (
+				<div>
+					<header class="mb-6 flex flex-wrap items-center gap-3">
+						<span class="grid place-items-center size-10 rounded-xl bg-blue-600/10 text-blue-600">
+							<Briefcase class="size-5" />
+						</span>
+						<div class="min-w-0">
+							<h3 class="text-xl md:text-2xl font-bold text-zinc-800 dark:text-zinc-100 leading-tight">{entry.title}</h3>
+							<p class="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
+								<time>{entry.date}</time>
+								<span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400">{entryDuration}</span>
+							</p>
+						</div>
+					</header>
+					<p class="text-sm md:text-base text-zinc-700 dark:text-zinc-300 max-w-3xl mb-8">{entry.description}</p>
+
+					{entry.companies && entry.companies.length > 0 && (
+						<ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+							{entry.companies.map((company, ci) => {
+								const { Icon, bg, color } = iconForCompany(company.title);
+								const duration = computeDuration(company.date.split('–')[0].trim(), company.date.split('–')[1]?.trim() ?? '');
+								const projectCount = company.projects?.length ?? 0;
+								const isFeatured = ci === 0;
+								return (
+									<li data-exp-item style={`--exp-i:${ci}`} class={`group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] backdrop-blur-sm p-6 exp-card-hover ${isFeatured ? 'md:col-span-2 lg:col-span-2' : ''}`}>
+										{/* halo de color en hover */}
+										<span class="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full bg-blue-600/15 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+
+										<CompanyHeader title={company.title} date={company.date} duration={duration} icon={Icon} iconBgClass={bg} iconColorClass={color} />
+
+										<p class="mt-4 text-sm text-zinc-600 dark:text-zinc-400">{company.description}</p>
+
+										{company.projects && company.projects.length > 0 && (
+											<ul class="mt-5 space-y-4 border-t border-zinc-200/80 dark:border-white/10 pt-4">
+												{company.projects.map((project) => (
+													<li>
+														<ProjectCard title={project.title} stack={project.stack} description={project.description} tags={project.tags} variant={isFeatured ? 'featured' : 'inset'} />
+													</li>
+												))}
+											</ul>
+										)}
+
+										{projectCount === 0 && <p class="mt-4 text-xs italic text-zinc-500 dark:text-zinc-400">Sin proyectos detallados en este periodo.</p>}
+									</li>
+								);
+							})}
+						</ul>
+					)}
+				</div>
+			);
+		})
+	}
+</div>

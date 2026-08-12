@@ -1,7 +1,27 @@
----
-import { TAGS } from './TagsIcons.astro';
+import { TAGS } from '../components/TagsIcons.astro';
 
-const EXPERIENCE = [
+export interface ExperienceProject {
+	title: string;
+	stack: string;
+	tags: Array<{ name: string; class: string; icon: any }>;
+	description: string;
+}
+
+export interface ExperienceCompany {
+	date: string;
+	title: string;
+	description: string;
+	projects: ExperienceProject[];
+}
+
+export interface ExperienceEntry {
+	date: string;
+	title: string;
+	description: string;
+	companies: ExperienceCompany[];
+}
+
+export const EXPERIENCE: ExperienceEntry[] = [
 	{
 		date: 'Enero 2024 – Actualidad',
 		title: 'Full Stack Web Developer — Autónomo',
@@ -66,60 +86,3 @@ const EXPERIENCE = [
 		]
 	}
 ];
----
-
-<ol class="relative mt-16">
-	{
-		EXPERIENCE.map((entry) => (
-			<li class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4">
-				<div class="relative pb-8 md:col-span-2">
-					<div class="sticky top-[10%]">
-						<span class="text-blue-600 -left-[42px] absolute rounded-full text-5xl">&bull;</span>
-						<h3 class="p-0 m-0 text-xl font-bold text-zinc-700 dark:text-zinc-200">{entry.title}</h3>
-						<time class="p-0 m-0 text-sm text-zinc-700 dark:text-zinc-300">{entry.date}</time>
-					</div>
-				</div>
-				<div class="relative flex flex-col gap-4 pb-4 text-zinc-700 dark:text-zinc-300 md:col-span-3">
-					<p>{entry.description}</p>
-					{entry.companies && entry.companies.length > 0 && (
-						<ul class="mt-4 space-y-8 border-l-2 border-zinc-300 dark:border-white/10 pl-6">
-							{entry.companies.map((company) => (
-								<li class="relative">
-									<span class="absolute -left-[31px] top-1.5 size-3 rounded-full bg-blue-600 ring-4 ring-zinc-100 dark:ring-black" />
-									<h4 class="text-base font-semibold text-zinc-800 dark:text-zinc-100">{company.title}</h4>
-									<time class="text-xs text-zinc-600 dark:text-zinc-400">{company.date}</time>
-									<p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{company.description}</p>
-									{company.projects && company.projects.length > 0 && (
-										<ul class="mt-4 space-y-6">
-											{company.projects.map((project) => (
-												<li class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white/40 dark:bg-white/5 p-4">
-													<div class="flex items-start justify-between gap-2 flex-wrap">
-														<h5 class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">{project.title}</h5>
-													</div>
-													<p class="mt-1 text-xs font-mono text-zinc-500 dark:text-zinc-400">{project.stack}</p>
-													<p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{project.description}</p>
-													{project.tags && project.tags.length > 0 && (
-														<ul class="mt-3 flex flex-wrap gap-2">
-															{project.tags.map((tag) => (
-																<li>
-																	<span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
-																		<tag.icon class="size-4" />
-																		{tag.name}
-																	</span>
-																</li>
-															))}
-														</ul>
-													)}
-												</li>
-											))}
-										</ul>
-									)}
-								</li>
-							))}
-						</ul>
-					)}
-				</div>
-			</li>
-		))
-	}
-</ol>

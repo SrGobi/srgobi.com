@@ -1,0 +1,65 @@
+---
+// Variante 1 — Timeline vertical con cards glass y hover-lift.
+// La línea continúa a lo largo de toda la entry (no por empresa). Cada empresa
+// tiene su propio dot pequeño alineado a la línea. Stagger de entrada por item.
+import { EXPERIENCE } from '../../data/experience';
+import { Briefcase } from '@lucide/astro';
+import { computeDuration } from '../../lib/dates';
+import CompanyHeader from './CompanyHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<ol class="relative mt-14 space-y-12">
+	{
+		EXPERIENCE.map((entry) => {
+			const entryDuration = computeDuration(entry.date.split('–')[0].trim(), entry.date.split('–')[1]?.trim() ?? '');
+			return (
+				<li class="relative">
+					{/* línea continua a lo largo de toda la entry */}
+					<span class="pointer-events-none absolute left-[14px] top-2 bottom-0 w-px bg-gradient-to-b from-blue-600/70 via-zinc-300 dark:via-white/15 to-transparent md:left-[18px]" />
+
+					{/* cabecera principal de la entry */}
+					<div class="relative pl-12 md:pl-14 mb-8">
+						<span class="absolute left-0 top-0 grid place-items-center size-9 md:size-10 rounded-full bg-blue-600 text-white ring-4 ring-zinc-50 dark:ring-black shadow-md shadow-blue-600/20">
+							<Briefcase class="size-4 md:size-5" />
+						</span>
+						<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+							<h3 class="text-xl md:text-2xl font-bold text-zinc-800 dark:text-zinc-100 leading-tight">{entry.title}</h3>
+							<span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400">{entryDuration}</span>
+						</div>
+						<time class="mt-1 block text-sm text-zinc-500 dark:text-zinc-400">{entry.date}</time>
+						<p class="mt-3 text-sm md:text-base text-zinc-700 dark:text-zinc-300 max-w-3xl">{entry.description}</p>
+					</div>
+
+					{entry.companies && entry.companies.length > 0 && (
+						<ul class="relative space-y-6 pl-12 md:pl-14">
+							{entry.companies.map((company, ci) => {
+								const duration = computeDuration(company.date.split('–')[0].trim(), company.date.split('–')[1]?.trim() ?? '');
+								return (
+									<li data-exp-item style={`--exp-i:${ci}`} class="relative exp-card-hover rounded-xl border border-zinc-200 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] backdrop-blur-sm p-5 md:p-6">
+										{/* dot alineado a la línea */}
+										<span class="absolute -left-[34px] top-7 grid place-items-center size-4 rounded-full bg-blue-600 ring-4 ring-zinc-50 dark:ring-black">
+											<span class="size-1.5 rounded-full bg-white" />
+										</span>
+										<CompanyHeader title={company.title} date={company.date} duration={duration} />
+										<p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">{company.description}</p>
+
+										{company.projects && company.projects.length > 0 && (
+											<ul class="mt-5 grid gap-3 sm:grid-cols-2">
+												{company.projects.map((project) => (
+													<li>
+														<ProjectCard title={project.title} stack={project.stack} description={project.description} tags={project.tags} variant="inset" />
+													</li>
+												))}
+											</ul>
+										)}
+									</li>
+								);
+							})}
+						</ul>
+					)}
+				</li>
+			);
+		})
+	}
+</ol>

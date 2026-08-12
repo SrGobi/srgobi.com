@@ -1,0 +1,33 @@
+---
+// Cabecera reutilizable para una empresa dentro de una variante de experiencia.
+// Muestra icono (Building2 por defecto), título, fecha y opcionalmente duración calculada.
+import { Building2, Calendar } from '@lucide/astro';
+
+interface Props {
+	title: string;
+	date: string;
+	duration?: string | null;
+	icon?: any;
+	iconClass?: string;
+	iconBgClass?: string;
+	iconColorClass?: string;
+}
+
+const { title, date, duration, icon: Icon = Building2, iconClass = 'size-4', iconBgClass = 'bg-blue-600/10', iconColorClass = 'text-blue-600' } = Astro.props;
+---
+
+<div class="flex items-start gap-3 min-w-0">
+	<span class={`grid place-items-center size-9 shrink-0 rounded-lg ${iconBgClass} ${iconColorClass}`}>
+		<Icon class={iconClass} />
+	</span>
+	<div class="min-w-0 flex-1">
+		<h4 class="text-base font-semibold text-zinc-800 dark:text-zinc-100 leading-tight truncate">{title}</h4>
+		<p class="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+			<span class="inline-flex items-center gap-1">
+				<Calendar class="size-3" />
+				<time>{date}</time>
+			</span>
+			{duration && <span class="inline-flex items-center gap-1 rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400">{duration}</span>}
+		</p>
+	</div>
+</div>

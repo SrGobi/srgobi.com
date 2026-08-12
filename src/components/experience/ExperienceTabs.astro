@@ -1,0 +1,115 @@
+---
+// Variante 5 — Tabs interactivas con indicador animado.
+// Cada empresa es una tab con duración visible. Panel activo con animación de entrada.
+// Script mínimo: sincroniza tab ↔ panel. Sin JS el primer panel sigue siendo funcional.
+import { EXPERIENCE } from '../../data/experience';
+import { Briefcase, Building2 } from '@lucide/astro';
+import { computeDuration } from '../../lib/dates';
+import CompanyHeader from './CompanyHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<div class="mt-14 space-y-12">
+	{
+		EXPERIENCE.map((entry) => {
+			const entryDuration = computeDuration(entry.date.split('–')[0].trim(), entry.date.split('–')[1]?.trim() ?? '');
+			return (
+				<div>
+					<header class="mb-6 flex flex-wrap items-center gap-3">
+						<span class="grid place-items-center size-10 rounded-xl bg-blue-600/10 text-blue-600">
+							<Briefcase class="size-5" />
+						</span>
+						<div>
+							<h3 class="text-xl md:text-2xl font-bold text-zinc-800 dark:text-zinc-100 leading-tight">{entry.title}</h3>
+							<p class="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
+								<time>{entry.date}</time>
+								<span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400">{entryDuration}</span>
+							</p>
+						</div>
+					</header>
+					<p class="text-sm md:text-base text-zinc-700 dark:text-zinc-300 max-w-3xl mb-6">{entry.description}</p>
+
+					{entry.companies && entry.companies.length > 0 && (
+						<div data-tabs-root class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden exp-card-hover">
+							{/* tablist */}
+							<div role="tablist" class="relative flex overflow-x-auto border-b border-zinc-200 dark:border-white/10 bg-zinc-50/60 dark:bg-white/[0.02] scrollbar-thin">
+								{entry.companies.map((company, idx) => {
+									const shortName = company.title.split(' — ')[1] ?? company.title;
+									const duration = computeDuration(company.date.split('–')[0].trim(), company.date.split('–')[1]?.trim() ?? '');
+									return (
+										<label class={`relative flex-1 min-w-[160px] cursor-pointer select-none px-4 py-3 transition ${idx === 0 ? 'tab-active' : ''}`} data-tab-label={idx}>
+											<input type="radio" name={`exp-${entry.date}`} class="peer sr-only" data-tab-idx={idx} checked={idx === 0} />
+											<div class="flex flex-col items-center gap-0.5 text-center">
+												<span class="text-sm font-semibold text-zinc-600 dark:text-zinc-400 peer-checked:text-blue-600 transition truncate max-w-full">{shortName}</span>
+												<span class="text-[10px] text-zinc-400 dark:text-zinc-500 peer-checked:text-blue-500 transition">{duration}</span>
+											</div>
+											<span class={`pointer-events-none absolute inset-x-0 -bottom-px h-0.5 bg-blue-600 origin-center transition-transform duration-300 ${idx === 0 ? 'scale-x-100' : 'scale-x-0'}`} data-tab-indicator />
+										</label>
+									);
+								})}
+							</div>
+
+							{/* paneles */}
+							{entry.companies.map((company, idx) => {
+								const duration = computeDuration(company.date.split('–')[0].trim(), company.date.split('–')[1]?.trim() ?? '');
+								return (
+									<div role="tabpanel" data-panel-idx={idx} data-exp-panel class={idx === 0 ? 'p-5 md:p-7' : 'hidden p-5 md:p-7'}>
+										<CompanyHeader title={company.title} date={company.date} duration={duration} icon={Building2} />
+										<p class="mt-4 text-sm text-zinc-700 dark:text-zinc-300 mb-6">{company.description}</p>
+
+										{company.projects && company.projects.length > 0 ? (
+											<ul class="grid gap-3 sm:grid-cols-2">
+												{company.projects.map((project) => (
+													<li>
+														<ProjectCard title={project.title} stack={project.stack} description={project.description} tags={project.tags} variant="inset" />
+													</li>
+												))}
+											</ul>
+										) : (
+											<p class="text-sm italic text-zinc-500 dark:text-zinc-400">Sin proyectos detallados en este periodo.</p>
+										)}
+									</div>
+								);
+							})}
+						</div>
+					)}
+				</div>
+			);
+		})
+	}
+</div>
+
+<script>
+	// Sincroniza tab activa con panel visible + mueve el indicador animado.
+	document.querySelectorAll<HTMLDivElement>('[data-tabs-root]').forEach((root) => {
+		const radios = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="radio"][data-tab-idx]'));
+		const panels = root.querySelectorAll<HTMLElement>('[data-panel-idx]');
+		const indicators = root.querySelectorAll<HTMLElement>('[data-tab-indicator]');
+		const labels = root.querySelectorAll<HTMLLabelElement>('[data-tab-label]');
+
+		const sync = () => {
+			const checkedIdx = radios.findIndex((r) => r.checked);
+			panels.forEach((panel, i) => {
+				const isActive = i === checkedIdx;
+				panel.classList.toggle('hidden', !isActive);
+			});
+			indicators.forEach((indicator, i) => {
+				indicator.classList.toggle('scale-x-100', i === checkedIdx);
+				indicator.classList.toggle('scale-x-0', i !== checkedIdx);
+			});
+			labels.forEach((label, i) => {
+				label.classList.toggle('tab-active', i === checkedIdx);
+			});
+		};
+
+		radios.forEach((r) => r.addEventListener('change', sync));
+		sync();
+	});
+</script>
+
+<style>
+	/* Highlight sutil en la tab activa */
+	.tab-active {
+		background: linear-gradient(180deg, transparent, rgba(88, 101, 242, 0.04));
+	}
+</style>

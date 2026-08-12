@@ -7,6 +7,17 @@ import ImageModal from './ImageModal.astro';
 
 const PROJECTS = [
 	{
+		title: 'By Brava — Website Redesign',
+		description: `Rediseño integral del sitio web de Brava, transformando los diseños visuales creados en Adobe Illustrator en una aplicación web moderna, accesible y completamente responsive.\n\nDesarrollé el frontend completo de forma independiente con Next.js, React, TypeScript y Tailwind CSS, definiendo la arquitectura de componentes reutilizables y la estructura general del proyecto.\n\nIntegré Sanity CMS para consumir y representar contenido dinámico, y construí un sistema de formularios dinámicos con múltiples tipos de campo y validación. Implementé animaciones e interacciones de interfaz con Motion y Lenis, cuidando la experiencia en todos los dispositivos.\n\nEl proyecto se gestiona dentro de un monorepo con Turborepo, integrando los componentes y paquetes del repositorio, y todo el flujo de entregas se realiza mediante Pull Requests en GitHub.`,
+		link: 'https://bybrava.pt/',
+		image: ['/projects/byBrava.webp'],
+		tags: [TAGS.NEXT, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.SANITY],
+		status: PROJECT_STATUS.IN_PROGRESS,
+		adminTool: ADMIN_TOOLS.VERCEL,
+		modalAnimation: { animation: 'slide' as const, from: 'right' as const, duration: 500 },
+		imageAnimation: { animation: 'zoom' as const, duration: 450 }
+	},
+	{
 		title: 'AgroTraz - Gestion de Fabricas',
 		description: `Desarrollo de una plataforma de gestión integral para fábricas, diseñada para optimizar la administración de recursos y procesos. La aplicación permite a los usuarios gestionar y controlar diversos aspectos de la producción, incluyendo la planificación, seguimiento y análisis de datos en tiempo real.\n
 		La interfaz de usuario es intuitiva y fácil de usar, lo que facilita la navegación y el acceso a la información crítica. La plataforma incluye funcionalidades avanzadas como la generación de informes personalizados, la integración con sistemas externos y la capacidad de adaptarse a las necesidades específicas de cada fábrica.\n
@@ -21,14 +32,13 @@ const PROJECTS = [
 	},
 	{
 		title: 'Goblin Ajedrez - Juego de ajedrez online',
-		description: `GoblinAjedrez es un proyecto en el que he trabajado en la optimización y mejora integral de su estructura y funcionalidad. He reescrito la mayoría de los archivos, optimizándolos y definiendo correctamente cada función, constante y parámetro para mejorar la legibilidad y el mantenimiento del código. Además, he realizado una optimización del SEO y la mejora de los metadatos para incrementar la visibilidad en buscadores.\n
-		El logo original en formato PNG fue convertido a SVG para garantizar su correcta visualización en distintos tamaños y dispositivos. En términos de diseño, implementé Bootstrap para mejorar la estética y mantener una experiencia de usuario coherente con la estructura previa del proyecto, basado en Python, archivos .py, templates y archivos estáticos. También realicé una reorganización de la estructura de carpetas internas para optimizar la gestión de los archivos.\n
-		La sección de puzzles ha sido completamente rediseñada e implementada desde cero, incluyendo tres modos de juego distintos: puzzles de tres vidas, puzzles de tres minutos y puzzles por temas. Estos últimos cuentan con una amplia gama de ejercicios diseñados para el entrenamiento, organizados en diferentes tipos, apartados y subcategorías. También se han incorporado puzzles por rating, permitiendo una experiencia más personalizada según el nivel del usuario. Todo el sistema ha sido reescrito con la integración de Chessground, proporcionando un tablero más avanzado que permite modificar tanto el fondo como las piezas, con más de veinte opciones distintas para cada uno. Además, este nuevo tablero es completamente redimensionable y ha mejorado significativamente la experiencia en dispositivos móviles, eliminando errores previos como bloqueos o fallos en la interacción táctil. También se ha añadido soporte para el clic secundario, permitiendo la creación de círculos, flechas y diferentes estados antes de realizar un movimiento.\n
-		Junto con estas mejoras, corregí errores en enlaces y rutas, asegurando una navegación más intuitiva. Implementé ajustes en la estructura de los cursos, optimizando su accesibilidad y funcionalidad. El diseño fue adaptado para ser completamente responsivo, garantizando una experiencia óptima en dispositivos móviles y tablets. Se añadió la posibilidad de alternar entre un modo oscuro y un modo claro para mejorar la accesibilidad y personalización del entorno. También implementé un sistema de autenticación que incluye registro y login mediante correo y contraseña, con notificaciones enviadas al correo electrónico para mayor seguridad.\n
-		Con todas estas mejoras, GoblinAjedrez es ahora una plataforma más eficiente, rápida y accesible, proporcionando una mejor experiencia tanto para jugadores como para estudiantes de ajedrez.`,
+		description: `Plataforma de ajedrez online completamente reescrita desde cero. Evolucionó desde una aplicación básica en Python Flask hacia un stack moderno con React, Node.js y MariaDB, manteniendo una arquitectura preparada para crecer.\n
+		Incluye modos de juego normales y competitivos, puzzles con diferentes modos y temáticas, cursos, perfiles personalizables con avatares, eventos, reseñas y un panel de administración completo. El sistema de pagos está integrado con Stripe.\n
+		El tablero usa Chessground personalizado: redimensionable, con más de 20 skins para piezas y fondos, soporte para clic secundario (círculos, flechas y anotaciones) y una experiencia móvil cuidada. SEO, metadatos y estructura de navegación optimizados para buscadores.\n
+		Infraestructura con Docker y Dokploy sobre un VPS, con despliegues independientes para frontend, backend y base de datos. La plataforma está en producción y sigue evolucionando con nuevas features y mantenimiento continuo.`,
 		link: 'https://goblinajedrez.com/',
-		image: ['/projects/goblinajedrez.webp', '/projects/goblinajedrez-1.webp', '/projects/goblinajedrez.webp'],
-		tags: [TAGS.PYTHON, TAGS.JINJA2, TAGS.HTML, TAGS.BOOTSTRAP, TAGS.SQLITE],
+		image: ['/projects/goblinajedrez.webp', '/projects/goblinajedrez-1.webp', '/projects/goblinajedrez-2.webp'],
+		tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.VITE, TAGS.NODE, TAGS.EXPRESS, TAGS.MARIADB],
 		status: PROJECT_STATUS.IN_PROGRESS,
 		adminTool: ADMIN_TOOLS.VPS,
 		modalAnimation: { animation: 'slide' as const, from: 'left' as const, duration: 500 },
@@ -42,16 +52,16 @@ const PROJECTS = [
 			{
 				date: '2025-12-10',
 				tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.VITE, TAGS.NODE, TAGS.EXPRESS, TAGS.MARIADB],
-				description: 'Migración completa a React y TypeScript con backend en Express'
+				description: 'Migración completa a React + Node.js + MariaDB (en producción, en evolución)'
 			}
 		]
 	},
 	{
 		title: 'ETTG',
-		description: `El European Think Tanks Group (ETTG) es una red de seis think tanks europeos independientes que colaboran para proporcionar investigación y análisis innovadores y relevantes para las políticas relacionadas con la cooperación internacional de la Unión Europea y el desarrollo sostenible global.`,
+		description: `El European Think Tanks Group (ETTG) es una red de seis think tanks europeos independientes que colaboran para proporcionar investigación y análisis innovadores sobre políticas de cooperación internacional de la UE y desarrollo sostenible global.\n\n		En este proyecto, desarrollado con WordPress, PHP, Elementor y Advanced Custom Fields, me encargo del mantenimiento y evolución continua de la plataforma: creación de un sistema de contenido relacionado mediante ACF + snippets PHP + Elementor, desarrollo y modificación de páginas y templates completas, resolución de incidencias en categorías, etiquetas y consultas dinámicas, auditoría de The Events Calendar y optimización general de la plataforma.`,
 		link: 'https://ettg.eu/',
 		image: ['/projects/ettg.webp'],
-		tags: [],
+		tags: [TAGS.WORDPRESS, TAGS.JAVASCRIPT],
 		status: PROJECT_STATUS.IN_PROGRESS,
 		adminTool: ADMIN_TOOLS.WORDPRESS,
 		bgColor: '#089C80',
@@ -83,11 +93,34 @@ const PROJECTS = [
 		imageAnimation: { animation: 'scale' as const, duration: 350 }
 	},
 	{
+		title: 'Weasel Web — Web corporativa',
+		description: `Mantenimiento y evolución de la página web corporativa de Weasel Web, una empresa de desarrollo de software. Trabajo sobre la base existente modificando la mayoría de las páginas y componentes, implementando mejoras visuales y funcionales, y resolviendo errores en la aplicación para mantener la web siempre alineada con la imagen y servicios actuales de la empresa.`,
+		link: 'https://weaselweb.es/',
+		image: ['/projects/weaselweb.webp'],
+		tags: [TAGS.ASTRO, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.VERCEL,
+		modalAnimation: { animation: 'fade' as const, duration: 500 },
+		imageAnimation: { animation: 'slide' as const, from: 'bottom' as const, duration: 450 }
+	},
+	{
+		title: 'ESP Customs OAuth — NPM',
+		description: `Librería open source publicada en NPM que simplifica la integración de Discord OAuth en aplicaciones y servicios. Desarrollada desde cero en TypeScript y Node.js, con documentación propia, tipado completo y una API sencilla que abstrae todo el flujo de autenticación OAuth2 de Discord para que cualquier desarrollador pueda añadir login con Discord en su proyecto en minutos.`,
+		link: 'https://www.npmjs.com/package/esp-customs-oauth',
+		image: ['/projects/esp_customs_oauth.webp'],
+		tags: [TAGS.TYPESCRIPT, TAGS.NODE],
+		status: PROJECT_STATUS.COMPLETED,
+		adminTool: ADMIN_TOOLS.VERCEL,
+		modalAnimation: { animation: 'scale' as const, duration: 400 },
+		imageAnimation: { animation: 'zoom' as const, duration: 400 }
+	},
+	{
 		title: 'AuraFut - Ecommerce',
-		description: `Desarrollo de una tienda online de productos deportivos estructurada en tres módulos principales. Cada componente ha sido optimizado para ofrecer una experiencia de usuario rápida y eficiente, asegurando un rendimiento óptimo de la plataforma.\n
-		Admin: Panel de administración (admin.aurafut.com) para gestionar estadísticas, productos, pedidos y usuarios, con opciones de diseño personalizables. Incluye un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
-		Cliente: Plataforma de compra (aurafut.com), con funcionalidades como registro y login de usuarios, perfiles personales, gestión de pedidos, y un sistema avanzado de compra que incluye diversas pasarelas de pago (Paypal, Mastercard, Visa, Google Pay). También cuenta con un buscador avanzado de productos, filtros personalizables y una interfaz intuitiva para mejorar la experiencia del usuario.\n
-		Server: Servidor manejado a través de API, construido con Express, que incorpora sistemas de seguridad Middleware y autenticación de tokens, garantizando un entorno seguro y eficiente para la gestión de datos y transacciones.`,
+		description: `Tienda online de productos deportivos estructurada en tres módulos: frontend de cliente, panel de administración y API. Cada componente se diseñó para ofrecer una experiencia de compra rápida, segura y escalable.\n
+		Admin: panel para gestionar estadísticas, productos, pedidos y usuarios, con un sistema avanzado de subida de imágenes que transcodifica a base64 con optimización previa.\n
+		Cliente: registro y login, perfiles personales, gestión de pedidos, sistema de compra con múltiples pasarelas (PayPal, Mastercard, Visa, Google Pay), buscador avanzado, filtros personalizables y una interfaz responsive cuidada.\n
+		Server: API con Express, middleware de seguridad y autenticación mediante tokens. Construido con React, TypeScript, Bootstrap y MongoDB, con despliegue inicial en Heroku.\n
+		La plataforma sigue operativa, aunque el sistema fue migrado posteriormente a Shopify para simplificar su mantenimiento.`,
 		link: 'https://aurafut.com',
 		image: ['/projects/aurafut.webp'],
 		tags: [TAGS.TYPESCRIPT, TAGS.NODE, TAGS.REACT, TAGS.BOOTSTRAP, TAGS.MONGODB],
