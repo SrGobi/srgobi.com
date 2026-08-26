@@ -28,7 +28,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
 		description: 'Desarrollo profesional de aplicaciones web y soluciones digitales para clientes y empresas, participando en proyectos completos de frontend, backend, bases de datos, APIs, CMS, autenticación, arquitectura e infraestructura.',
 		companies: [
 			{
-				date: 'Marzo 2026 – Actualidad',
+				date: 'Marzo 2026 – Agosto 2026',
 				title: 'Zima-Blue — Frontend Developer',
 				description: 'Colaboración profesional como autónomo dentro de Zima-Blue.',
 				projects: [
