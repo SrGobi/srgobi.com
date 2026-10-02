@@ -10,6 +10,7 @@ const PROJECTS = [
 		title: 'By Brava — Website Redesign',
 		description: `Rediseño integral del sitio web de Brava, transformando los diseños visuales creados en Adobe Illustrator en una aplicación web moderna, accesible y completamente responsive.\n\nDesarrollé el frontend completo de forma independiente con Next.js, React, TypeScript y Tailwind CSS, definiendo la arquitectura de componentes reutilizables y la estructura general del proyecto.\n\nIntegré Sanity CMS para consumir y representar contenido dinámico, y construí un sistema de formularios dinámicos con múltiples tipos de campo y validación. Implementé animaciones e interacciones de interfaz con Motion y Lenis, cuidando la experiencia en todos los dispositivos.\n\nEl proyecto se gestiona dentro de un monorepo con Turborepo, integrando los componentes y paquetes del repositorio, y todo el flujo de entregas se realiza mediante Pull Requests en GitHub.`,
 		link: 'https://bybrava.pt/',
+		demo:'https://by-brava-8v8begfs3-zima-blues-projects.vercel.app',
 		image: ['/projects/byBrava.webp'],
 		tags: [TAGS.NEXT, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.SANITY],
 		status: PROJECT_STATUS.COMPLETED,
@@ -166,7 +167,7 @@ const PROJECTS = [
 
 <div class="flex flex-col gap-y-16">
 	{
-		PROJECTS.map(({ image, title, description, tags, link, status, adminTool, history, bgColor, modalAnimation, imageAnimation }) => (
+		PROJECTS.map(({ image, title, description, tags, link, demo, status, adminTool, history, bgColor, modalAnimation, imageAnimation }) => (
 			<article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 				<div class="w-full md:w-1/2">
 					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
@@ -275,6 +276,12 @@ const PROJECTS = [
 									Enlace privado
 								</span>
 							)}
+							{demo ? (
+								<LinkButton href={demo} variant="secondary">
+									<Link2 class="size-4 mr-1" />
+									Ver demo
+								</LinkButton>
+							) : null}
 						</footer>
 					</div>
 				</div>
